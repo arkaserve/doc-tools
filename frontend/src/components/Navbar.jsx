@@ -226,12 +226,20 @@ export default function Navbar({ dark, setDark }) {
             <NavDrop label="All Tools">
               {(close) => <MegaMenu onClose={close} />}
             </NavDrop>
-            {[{l:'Contact',p:'/contact'},{l:'About',p:'/about'}].map(n => (
-              <Link key={n.p} to={n.p} replace={INFO_PAGES.includes(location.pathname)} style={{ fontSize:'15.5px', fontWeight:600, color:NAV_TEXT, textDecoration:'none', padding:'7px 11px', borderRadius:'7px', transition:'all 0.15s', whiteSpace:'nowrap' }}
-                onMouseEnter={e => { e.currentTarget.style.background=NAV_HOVER; e.currentTarget.style.color='#fff' }}
-                onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color=NAV_TEXT }}>
-                {n.l}
-              </Link>
+            {[{l:'Contact',p:'/contact'},{l:'About',p:'https://arkaserve.com/#about',external:true}].map(n => (
+              n.external ? (
+                <a key={n.p} href={n.p} target="_blank" rel="noopener noreferrer" style={{ fontSize:'15.5px', fontWeight:600, color:NAV_TEXT, textDecoration:'none', padding:'7px 11px', borderRadius:'7px', transition:'all 0.15s', whiteSpace:'nowrap' }}
+                  onMouseEnter={e => { e.currentTarget.style.background=NAV_HOVER; e.currentTarget.style.color='#fff' }}
+                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color=NAV_TEXT }}>
+                  {n.l}
+                </a>
+              ) : (
+                <Link key={n.p} to={n.p} replace={INFO_PAGES.includes(location.pathname)} style={{ fontSize:'15.5px', fontWeight:600, color:NAV_TEXT, textDecoration:'none', padding:'7px 11px', borderRadius:'7px', transition:'all 0.15s', whiteSpace:'nowrap' }}
+                  onMouseEnter={e => { e.currentTarget.style.background=NAV_HOVER; e.currentTarget.style.color='#fff' }}
+                  onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color=NAV_TEXT }}>
+                  {n.l}
+                </Link>
+              )
             ))}
           </div>
         </div>

@@ -55,7 +55,8 @@ export default function Footer() {
           {/* Company */}
           <FooterCol replace={shouldReplace} title="Company" links={[
             ['Home',    '/'],
-            ['About',   '/about'],
+            ['About',   'https://arkaserve.com/#about',  true],
+            ['Careers', 'https://arkaserve.com/careers', true],
             ['Contact', '/contact'],
           ]} extra={[
             ['Blog', null],
@@ -75,13 +76,21 @@ function FooterCol({ title, links, extra = [], replace = false }) {
     <div>
       <h4 style={{ fontWeight: 700, fontSize: '13px', color: '#fff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '14px' }}>{title}</h4>
       <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '9px' }}>
-        {links.map(([label, path]) => (
-          <li key={path}>
-            <Link to={path} replace={replace} style={{ fontSize: '13.5px', color: 'rgba(199,210,254,0.65)', textDecoration: 'none', transition: 'color 0.15s' }}
-              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(199,210,254,0.65)'}>
-              {label}
-            </Link>
+        {links.map(([label, path, external]) => (
+          <li key={label}>
+            {external ? (
+              <a href={path} target="_blank" rel="noopener noreferrer" style={{ fontSize: '13.5px', color: 'rgba(199,210,254,0.65)', textDecoration: 'none', transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(199,210,254,0.65)'}>
+                {label}
+              </a>
+            ) : (
+              <Link to={path} replace={replace} style={{ fontSize: '13.5px', color: 'rgba(199,210,254,0.65)', textDecoration: 'none', transition: 'color 0.15s' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(199,210,254,0.65)'}>
+                {label}
+              </Link>
+            )}
           </li>
         ))}
         {extra.map(([label, path]) => (
