@@ -35,8 +35,8 @@
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">4. Third-Party Services</h2>
           <p>We use the following third-party services that may collect data independently:</p>
           <ul className="list-disc pl-5 space-y-1 mt-2">
-            <li><strong>Google Analytics</strong> - website traffic analysis (<a href=”https://policies.google.com/privacy” className=”text-red-600 hover:underline” target=”_blank” rel=”noopener noreferrer”>Google Privacy Policy</a>)</li>
-            <li><strong>Google AdSense</strong> - display advertising (<a href=”https://policies.google.com/technologies/ads” className=”text-red-600 hover:underline” target=”_blank” rel=”noopener noreferrer”>Google Ad Policy</a>)</li>
+            <li><strong>Google Analytics</strong> - website traffic analysis (<a href="https://policies.google.com/privacy" className="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)</li>
+            <li><strong>Google AdSense</strong> - display advertising (<a href="https://policies.google.com/technologies/ads" className="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">Google Ad Policy</a>)</li>
           </ul>
           <p className="mt-2">These services operate under their own privacy policies. We do not control the data they collect.</p>
         </section>

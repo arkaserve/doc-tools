@@ -12,13 +12,13 @@ const SAMPLE = [
   '5  void main( )',
   '6  {',
   '7    int a, b, sum;',
-  '8    printf(“Enter two numbers: ”);',
-  '9    scanf(“%d %d”, &a, &b);',
+  '8    printf("Enter two numbers: ");',
+  '9    scanf("%d %d", &a, &b);',
   '10   sum = a + b;',
   '11   if(a! =b){',
-  '12     printf(“Not Equal\\n”);',
+  '12     printf("Not Equal\\n");',
   '13   }',
-  '14   printf(“\\nSum = %d”, sum);',
+  '14   printf("\\nSum = %d", sum);',
   '15   getch( );',
   '16   return 0;',
   '17 }',
@@ -30,7 +30,7 @@ const ALL_FIXES = [
   { id: 'crlf',       label: 'Fix CRLF endings',       desc: 'Windows \\r\\n → Unix \\n'              },
   { id: 'invisible',  label: 'Remove hidden chars',   desc: 'Zero-width spaces, soft hyphens'       },
   { id: 'nbsp',       label: 'Non-breaking spaces',   desc: 'U+00A0 → regular space'                },
-  { id: 'quotes',     label: 'Straighten quotes',     desc: '“” ‘’ → " \''      },
+  { id: 'quotes',     label: 'Straighten quotes',     desc: '“” ‘’ → " \''  },
   { id: 'ligatures',  label: 'Expand ligatures',      desc: 'ﬁﬂ → fi fl (common in PDFs)' },
   { id: 'dashes',     label: 'Fix em/en dashes',      desc: '–— → - in operator context'  },
   { id: 'operators',  label: 'Fix split operators',   desc: '! = → !=, < < → <<, - > → ->'          },
@@ -74,7 +74,7 @@ function cleanCode(raw, lang, opts) {
       const m = t.split(from).length - 1; n += m
       if (m) t = t.replaceAll(from, to)
     }
-    rec('quotes', 'Curly quotes fixed', '“”', n)
+    rec('quotes', 'Curly quotes fixed', '""', n)
   }
 
   if (opts.ligatures) {
