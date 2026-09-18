@@ -70,7 +70,7 @@ export default function ContactUs() {
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 20px 80px' }}>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: '40px', alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 340px), 1fr))', gap: '32px', alignItems: 'start' }}>
 
         {/* ── Left: info ── */}
         <div>
@@ -129,7 +129,7 @@ export default function ContactUs() {
             {/* ── STEP 1 ── */}
             {step === 1 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px' }}>
                   <Field label="Your name *" value={form.name} onChange={v => set('name', v)} placeholder="Anil Kumar" />
                   <Field label="Your email *" value={form.email} onChange={v => set('email', v)} placeholder="you@example.com" type="email" />
                 </div>
