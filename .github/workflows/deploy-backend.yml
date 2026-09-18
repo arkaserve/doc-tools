@@ -1,0 +1,28 @@
+name: Deploy Backend to EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/doccraft
+            git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/arkaserve/doc-tools.git
+            git fetch origin
+            git reset --hard origin/main
+            sudo systemctl restart doccraft
+            echo "Deploy complete — $(date)"
+            sudo systemctl status doccraft --no-pager | grep Active
