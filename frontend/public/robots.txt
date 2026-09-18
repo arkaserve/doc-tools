@@ -4,4 +4,4 @@ Disallow: /signin
 Disallow: /signup
 Disallow: /subscription
 
-Sitemap: https://pdftools.anilsofttech.com/sitemap.xml
+Sitemap: https://tools.arkaserve.com/sitemap.xml

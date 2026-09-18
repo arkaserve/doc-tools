@@ -1,7 +1,16 @@
-import { useState } from 'react'
-import { Download, Loader2, RotateCcw, Share2, Check, Twitter, Linkedin } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Download, Loader2, RotateCcw, Share2, Check, Linkedin } from 'lucide-react'
+import { getPageMeta } from '../lib/pageMeta'
 
-const SITE_URL = 'https://pdftools.anilsofttech.com'
+const SITE_URL = 'https://tools.arkaserve.com'
+
+const TRUST_BADGES = [
+  { label: '✓ 100% Free', bg: '#dcfce7', color: '#166534' },
+  { label: '✓ No Signup', bg: '#dbeafe', color: '#1e40af' },
+  { label: '⚡ Instant & Fast', bg: '#fef9c3', color: '#854d0e' },
+  { label: '🔒 Private & Secure', bg: '#f3e8ff', color: '#6b21a8' },
+]
 
 function ShareButton({ href, label, icon, color }) {
   return (
@@ -28,15 +37,12 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
     })
   }
 
-  const shareText = encodeURIComponent(`I just converted my files for FREE using DocCraft — ${title} and many more tools at ${SITE_URL}`)
+  const shareText = encodeURIComponent(`I just used ${title} for FREE on DocCraft — ${SITE_URL}`)
   const shareUrl  = encodeURIComponent(SITE_URL)
 
   return (
     <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #d1fae5' }}>
-
-      {/* Top — success */}
       <div style={{ background: 'linear-gradient(135deg, #064e3b 0%, #065f46 100%)' }} className="px-6 py-6 text-center">
-        {/* Checkmark */}
         <div className="mx-auto mb-3 w-14 h-14 rounded-full flex items-center justify-center"
           style={{ background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.3)' }}>
           <Check size={28} className="text-white" strokeWidth={3} />
@@ -45,7 +51,6 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
         <p className="text-emerald-200 text-sm truncate max-w-xs mx-auto">{result.name}</p>
       </div>
 
-      {/* Download */}
       <div className="px-6 py-4" style={{ background: '#f0fdf4', borderBottom: '1px solid #d1fae5' }}>
         <button
           onClick={onDownload}
@@ -68,13 +73,12 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
         )}
       </div>
 
-      {/* Share */}
       <div className="px-6 py-4" style={{ background: '#fff' }}>
         <div className="flex items-center gap-2 mb-3">
           <Share2 size={14} className="text-gray-400" />
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Love DocCraft? Spread the word!</p>
         </div>
-        <p className="text-xs text-gray-400 mb-3">Help others discover free document tools — share with a friend or on social media.</p>
+        <p className="text-xs text-gray-400 mb-3">Help others discover free tools — share with a friend or on social media.</p>
         <div className="flex flex-wrap gap-2">
           <ShareButton
             href={`https://twitter.com/intent/tweet?text=${shareText}`}
@@ -109,11 +113,56 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
 }
 
 export default function ToolPageLayout({ icon, title, description, children, onProcess, processing, result, onDownload, onReset }) {
+  const { pathname } = useLocation()
+  const meta = getPageMeta(pathname)
+  const steps = meta.steps || []
+  const faqs = meta.faqs || []
+
+  useEffect(() => {
+    const existing = document.getElementById('tool-page-jsonld')
+    if (existing) existing.remove()
+
+    const graph = [
+      {
+        '@type': 'SoftwareApplication',
+        name: `${title} — DocCraft`,
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'All',
+        url: `${SITE_URL}${pathname}`,
+        description,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        publisher: { '@type': 'Organization', name: 'Arkaserve', url: 'https://arkaserve.com' },
+      },
+    ]
+
+    if (faqs.length > 0) {
+      graph.push({
+        '@type': 'FAQPage',
+        mainEntity: faqs.map(f => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      })
+    }
+
+    const script = document.createElement('script')
+    script.id = 'tool-page-jsonld'
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })
+    document.head.appendChild(script)
+
+    return () => {
+      const el = document.getElementById('tool-page-jsonld')
+      if (el) el.remove()
+    }
+  }, [pathname, title, description])
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-14 h-14 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-2xl">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-14 h-14 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-2xl flex-shrink-0">
           {icon}
         </div>
         <div>
@@ -122,11 +171,19 @@ export default function ToolPageLayout({ icon, title, description, children, onP
         </div>
       </div>
 
-      {/* Main content */}
-      <div className="tool-page-card bg-white rounded-2xl border border-gray-100 shadow-sm p-6 space-y-6">
+      {/* Trust badges */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {TRUST_BADGES.map(({ label, bg, color }) => (
+          <span key={label} style={{ background: bg, color }} className="text-xs font-semibold px-3 py-1 rounded-full">
+            {label}
+          </span>
+        ))}
+      </div>
+
+      {/* Main tool card */}
+      <div className="tool-page-card bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-6 space-y-6 mb-8">
         {children}
 
-        {/* Process button */}
         {onProcess && !result && (
           <button onClick={onProcess} disabled={processing} className="btn-primary w-full flex items-center justify-center gap-2">
             {processing ? (
@@ -137,7 +194,6 @@ export default function ToolPageLayout({ icon, title, description, children, onP
           </button>
         )}
 
-        {/* Success banner */}
         {result && (
           <SuccessBanner
             result={result}
@@ -147,6 +203,55 @@ export default function ToolPageLayout({ icon, title, description, children, onP
           />
         )}
       </div>
+
+      {/* How to Use */}
+      {steps.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+            How to Use {title} — Free &amp; Instant
+          </h2>
+          <ol className="space-y-3">
+            {steps.map((step, i) => (
+              <li key={i} className="flex gap-3 items-start">
+                <span
+                  className="w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5"
+                  style={{ background: '#fee2e2', color: '#dc2626' }}
+                >
+                  {i + 1}
+                </span>
+                <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{step}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {/* FAQ */}
+      {faqs.length > 0 && (
+        <section>
+          <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-2">
+            {faqs.map((faq, i) => (
+              <details key={i} className="group rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <summary className="flex items-center justify-between gap-2 px-4 py-3 cursor-pointer text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 select-none list-none">
+                  <span>{faq.q}</span>
+                  <svg
+                    className="w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 py-3 text-sm text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700 leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

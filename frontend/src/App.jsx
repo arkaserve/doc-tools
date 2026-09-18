@@ -80,7 +80,7 @@ function ScrollToTop() {
 function PageMeta() {
   const { pathname } = useLocation()
   useEffect(() => {
-    const { title, desc } = getPageMeta(pathname)
+    const { title, desc, keywords } = getPageMeta(pathname)
     document.title = title
 
     const setMeta = (attr, name, content) => {
@@ -91,6 +91,7 @@ function PageMeta() {
     const canonical = `${BASE_URL}${pathname === '/' ? '' : pathname}`
 
     setMeta('name', 'description', desc)
+    setMeta('name', 'keywords', keywords)
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', desc)
     setMeta('property', 'og:url', canonical)
