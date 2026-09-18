@@ -1,0 +1,16 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arkaserve Tools">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F44336"/>
+      <stop offset="100%" stop-color="#C62828"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#bg)"/>
+  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.2"/>
+  <circle cx="50" cy="50" r="22" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.2"/>
+  <line x1="50" y1="12" x2="50" y2="88" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"/>
+  <line x1="12" y1="50" x2="88" y2="50" stroke="rgba(255,255,255,0.06)" stroke-width="1.2"/>
+  <line x1="19" y1="83" x2="50" y2="16" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  <line x1="50" y1="16" x2="81" y2="83" stroke="white" stroke-width="12" stroke-linecap="round"/>
+  <path d="M 32 57 Q 50 51 68 57" fill="none" stroke="white" stroke-width="9" stroke-linecap="round"/>
+</svg>

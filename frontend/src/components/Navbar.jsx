@@ -192,7 +192,7 @@ export default function Navbar({ dark, setDark }) {
 
         {/* Logo — extreme left */}
         <Link to="/" replace={INFO_PAGES.includes(location.pathname)} style={{ display:'flex', alignItems:'center', gap:'8px', fontWeight:800, fontSize:'20px', color:'#fff', textDecoration:'none', flexShrink:0 }}>
-          <img src="/icons/logo.jpg" alt="Arkaserve Tools" style={{ width:'30px', height:'30px', borderRadius:'8px', objectFit:'cover', flexShrink:0 }} />
+          <img src="/icons/logo.svg" alt="Arkaserve Tools" width="30" height="30" style={{ borderRadius:'8px', flexShrink:0 }} />
           Arkaserve Tools
         </Link>
 

@@ -1,12 +1,41 @@
 import { Link, useLocation } from 'react-router-dom'
-import { FileText } from 'lucide-react'
+import { useSiteStats } from '../hooks/usePageView'
 
 const DARK = '#1e1b4b'
 const INFO_PAGES = ['/about', '/contact', '/feedback']
 
+function OdometerCounter({ value }) {
+  const digits = String(value ?? 0).padStart(6, '0').split('')
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '14px' }}>
+      <div style={{ display: 'flex', gap: '3px' }}>
+        {digits.map((d, i) => (
+          <span key={i} style={{
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            width: '28px', height: '36px',
+            background: '#0d0e1a',
+            border: '1px solid rgba(244,67,54,0.35)',
+            borderRadius: '6px',
+            fontFamily: "'Courier New', monospace",
+            fontWeight: 700,
+            fontSize: '20px',
+            color: '#f44336',
+            letterSpacing: 0,
+            boxShadow: 'inset 0 2px 6px rgba(0,0,0,0.5), 0 1px 0 rgba(244,67,54,0.15)',
+            lineHeight: 1,
+          }}>{d}</span>
+        ))}
+      </div>
+      <span style={{ fontSize: '12px', color: 'rgba(199,210,254,0.45)', marginLeft: '4px' }}>total visitors</span>
+    </div>
+  )
+}
+
 export default function Footer() {
   const { pathname } = useLocation()
   const shouldReplace = INFO_PAGES.includes(pathname)
+  const siteStats = useSiteStats()
+  const total = siteStats?.total ?? null
   return (
     <footer style={{ background: DARK, color: 'rgba(199,210,254,0.75)', marginTop: '0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '48px 24px 0' }}>
@@ -15,14 +44,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 sm:col-span-3 lg:col-span-1">
             <Link to="/" replace={shouldReplace} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: 800, fontSize: '18px', color: '#fff', textDecoration: 'none', marginBottom: '10px' }}>
-              <div style={{ width: '30px', height: '30px', background: 'linear-gradient(135deg,#fb7185,#f43f5e)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <FileText size={16} color="#fff" />
-              </div>
+              <img src="/icons/logo.svg" alt="" width="28" height="28" style={{ borderRadius: '7px', flexShrink: 0 }} />
               Arkaserve Tools
             </Link>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(199,210,254,0.6)', margin: 0 }}>
               60+ free tools — PDF, documents, images, and code. No signup, no watermark.
             </p>
+            {total !== null && <OdometerCounter value={total} />}
           </div>
 
           {/* PDF Tools */}
