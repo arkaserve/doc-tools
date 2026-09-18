@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useSiteStats } from '../hooks/usePageView'
 
 /* ─── Color tokens (indigo-900 family, rose accent) ─── */
 const DARK = '#1e1b4b'
@@ -86,26 +87,10 @@ const CAT_COUNTS = CATEGORIES.reduce((acc, c) => {
   return acc
 }, {})
 
-const BASE_VISITORS = 14382
-
 export default function Home() {
   const [active, setActive] = useState('All')
-  const [visitors, setVisitors] = useState(BASE_VISITORS)
-
-  useEffect(() => {
-    try {
-      const alreadyCounted = sessionStorage.getItem('dc_counted')
-      const stored = parseInt(localStorage.getItem('dc_visitors') || '0', 10)
-      if (!alreadyCounted) {
-        const count = stored >= BASE_VISITORS ? stored + 1 : BASE_VISITORS + 1
-        localStorage.setItem('dc_visitors', String(count))
-        sessionStorage.setItem('dc_counted', '1')
-        setVisitors(count)
-      } else {
-        setVisitors(stored >= BASE_VISITORS ? stored : BASE_VISITORS)
-      }
-    } catch { setVisitors(BASE_VISITORS) }
-  }, [])
+  const siteStats = useSiteStats()
+  const visitors = siteStats?.total ?? null
 
   const visible = ALL_TOOLS.filter(t => active === 'All' || t.cat === active)
 
@@ -134,7 +119,7 @@ export default function Home() {
             { n: '100%',                       l: 'Browser-Based' },
             { n: 'No',                         l: 'Signup Required' },
             { n: '25 MB',                      l: 'Max File Size' },
-            { n: visitors.toLocaleString()+'+',l: 'Happy Visitors' },
+            { n: visitors !== null ? visitors.toLocaleString('en-IN') : '...', l: 'Tool Uses' },
           ].map(({ n, l }, i, arr) => (
             <div key={l} style={{ display: 'flex', alignItems: 'center' }}>
               <div className="px-8" style={{ textAlign: 'center' }}>

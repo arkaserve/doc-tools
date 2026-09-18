@@ -1,0 +1,38 @@
+import { useState, useEffect } from 'react'
+
+const API = import.meta.env.VITE_API_URL || 'http://3.236.24.123:8001'
+
+// Records a visit and returns { count, total } for the given slug (e.g. "merge-pdf")
+export function usePageView(slug) {
+  const [count, setCount] = useState(null)
+  const [total, setTotal] = useState(null)
+
+  useEffect(() => {
+    if (!slug) return
+    fetch(`${API}/api/stats/visit?page=${encodeURIComponent(slug)}`, { method: 'POST' })
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data) {
+          setCount(data.count)
+          setTotal(data.total)
+        }
+      })
+      .catch(() => {})
+  }, [slug])
+
+  return { count, total }
+}
+
+// Fetch overall total + all page counts without recording a visit (for homepage)
+export function useSiteStats() {
+  const [stats, setStats] = useState(null)
+
+  useEffect(() => {
+    fetch(`${API}/api/stats/`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data) setStats(data) })
+      .catch(() => {})
+  }, [])
+
+  return stats
+}

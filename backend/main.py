@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from routers import pdf, word, excel, html_tools, ml_tools, image
+from routers import pdf, word, excel, html_tools, ml_tools, image, stats
 
 logging.basicConfig(
     level=logging.INFO,
@@ -52,6 +52,7 @@ app.include_router(excel.router,      prefix="/api/excel", tags=["Excel"])
 app.include_router(html_tools.router, prefix="/api/html",  tags=["HTML"])
 app.include_router(ml_tools.router,  prefix="/api/ml",    tags=["ML"])
 app.include_router(image.router,     prefix="/api/image", tags=["Image"])
+app.include_router(stats.router,     prefix="/api/stats", tags=["Stats"])
 
 
 @app.exception_handler(Exception)

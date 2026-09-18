@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
-import { Download, Loader2, RotateCcw, Share2, Check, Linkedin } from 'lucide-react'
+import { Download, Loader2, RotateCcw, Share2, Check, Linkedin, Users } from 'lucide-react'
 import { getPageMeta } from '../lib/pageMeta'
+import { usePageView } from '../hooks/usePageView'
 
 // Related tools map — each tool links to its most relevant neighbours
 const RELATED_TOOLS = {
@@ -153,6 +154,8 @@ export default function ToolPageLayout({ icon, title, description, children, onP
   const related = RELATED_TOOLS[pathname] || []
   const steps = meta.steps || []
   const faqs = meta.faqs || []
+  const slug = pathname.replace(/^\//, '')
+  const { count } = usePageView(slug)
 
   useEffect(() => {
     // Update <title>, meta description, and canonical per tool page
@@ -220,13 +223,23 @@ export default function ToolPageLayout({ icon, title, description, children, onP
       </div>
 
       {/* Trust badges */}
-      <div className="flex flex-wrap gap-2 mb-6">
+      <div className="flex flex-wrap gap-2 mb-4">
         {TRUST_BADGES.map(({ label, bg, color }) => (
           <span key={label} style={{ background: bg, color }} className="text-xs font-semibold px-3 py-1 rounded-full">
             {label}
           </span>
         ))}
       </div>
+
+      {/* Visitor count */}
+      {count !== null && (
+        <div className="flex items-center gap-1.5 mb-5">
+          <Users size={13} className="text-gray-400" aria-hidden="true" />
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="font-semibold text-gray-700 dark:text-gray-300">{count.toLocaleString('en-IN')}</span> people used this tool
+          </span>
+        </div>
+      )}
 
       {/* Main tool card */}
       <div className="tool-page-card bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm p-6 space-y-6 mb-8">
