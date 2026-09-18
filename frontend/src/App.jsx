@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
+import { getPageMeta, BASE_URL } from './lib/pageMeta'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import MergePdf from './pages/MergePdf'
@@ -76,6 +77,33 @@ function ScrollToTop() {
   return null
 }
 
+function PageMeta() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    const { title, desc } = getPageMeta(pathname)
+    document.title = title
+
+    const setMeta = (attr, name, content) => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`)
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el) }
+      el.setAttribute('content', content)
+    }
+    const canonical = `${BASE_URL}${pathname === '/' ? '' : pathname}`
+
+    setMeta('name', 'description', desc)
+    setMeta('property', 'og:title', title)
+    setMeta('property', 'og:description', desc)
+    setMeta('property', 'og:url', canonical)
+    setMeta('name', 'twitter:title', title)
+    setMeta('name', 'twitter:description', desc)
+
+    let link = document.querySelector('link[rel="canonical"]')
+    if (!link) { link = document.createElement('link'); link.setAttribute('rel', 'canonical'); document.head.appendChild(link) }
+    link.setAttribute('href', canonical)
+  }, [pathname])
+  return null
+}
+
 export default function App() {
   const [dark, setDark] = useDarkMode()
 
@@ -83,6 +111,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-950 transition-colors duration-200">
       <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       <ScrollToTop />
+      <PageMeta />
       <Navbar dark={dark} setDark={setDark} />
       <main className="flex-1">
         <Routes>

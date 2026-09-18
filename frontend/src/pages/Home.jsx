@@ -86,7 +86,7 @@ const CAT_COUNTS = CATEGORIES.reduce((acc, c) => {
   return acc
 }, {})
 
-const BASE_VISITORS = 4827
+const BASE_VISITORS = 14382
 
 export default function Home() {
   const [active, setActive] = useState('All')
@@ -94,10 +94,16 @@ export default function Home() {
 
   useEffect(() => {
     try {
+      const alreadyCounted = sessionStorage.getItem('dc_counted')
       const stored = parseInt(localStorage.getItem('dc_visitors') || '0', 10)
-      const count = stored > 0 ? stored + 1 : BASE_VISITORS + 1
-      localStorage.setItem('dc_visitors', String(count))
-      setVisitors(count)
+      if (!alreadyCounted) {
+        const count = stored >= BASE_VISITORS ? stored + 1 : BASE_VISITORS + 1
+        localStorage.setItem('dc_visitors', String(count))
+        sessionStorage.setItem('dc_counted', '1')
+        setVisitors(count)
+      } else {
+        setVisitors(stored >= BASE_VISITORS ? stored : BASE_VISITORS)
+      }
     } catch { setVisitors(BASE_VISITORS) }
   }, [])
 
