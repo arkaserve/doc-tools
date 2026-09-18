@@ -161,7 +161,7 @@ export default function ToolPageLayout({ icon, title, description, children, onP
     const graph = [
       {
         '@type': 'SoftwareApplication',
-        name: `${title} — DocCraft`,
+        name: `${title} — Arkaserve Tools`,
         applicationCategory: 'WebApplication',
         operatingSystem: 'All',
         url: `${SITE_URL}${pathname}`,
