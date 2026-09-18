@@ -1,7 +1,40 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { Download, Loader2, RotateCcw, Share2, Check, Linkedin } from 'lucide-react'
 import { getPageMeta } from '../lib/pageMeta'
+
+// Related tools map — each tool links to its most relevant neighbours
+const RELATED_TOOLS = {
+  '/merge-pdf':      [{ path:'/split-pdf', label:'Split PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/rotate-pdf', label:'Rotate PDF' },{ path:'/pdf-to-word', label:'PDF to Word' }],
+  '/split-pdf':      [{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/rotate-pdf', label:'Rotate PDF' },{ path:'/protect-pdf', label:'Protect PDF' }],
+  '/compress-pdf':   [{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/split-pdf', label:'Split PDF' },{ path:'/pdf-to-word', label:'PDF to Word' },{ path:'/pdf-to-jpg', label:'PDF to JPG' }],
+  '/pdf-to-word':    [{ path:'/word-to-pdf', label:'Word to PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/pdf-to-jpg', label:'PDF to JPG' }],
+  '/word-to-pdf':    [{ path:'/pdf-to-word', label:'PDF to Word' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/excel-to-pdf', label:'Excel to PDF' }],
+  '/pdf-to-jpg':     [{ path:'/jpg-to-pdf', label:'JPG to PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/pdf-to-word', label:'PDF to Word' },{ path:'/image-compressor', label:'Compress Image' }],
+  '/jpg-to-pdf':     [{ path:'/pdf-to-jpg', label:'PDF to JPG' },{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/image-compressor', label:'Compress Image' }],
+  '/rotate-pdf':     [{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/split-pdf', label:'Split PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/watermark-pdf', label:'Watermark PDF' }],
+  '/protect-pdf':    [{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/watermark-pdf', label:'Watermark PDF' },{ path:'/split-pdf', label:'Split PDF' }],
+  '/watermark-pdf':  [{ path:'/protect-pdf', label:'Protect PDF' },{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/rotate-pdf', label:'Rotate PDF' }],
+  '/excel-to-pdf':   [{ path:'/pdf-to-excel', label:'PDF to Excel' },{ path:'/word-to-pdf', label:'Word to PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' }],
+  '/pdf-to-excel':   [{ path:'/excel-to-pdf', label:'Excel to PDF' },{ path:'/pdf-to-word', label:'PDF to Word' },{ path:'/json-to-csv', label:'JSON to CSV' },{ path:'/compress-pdf', label:'Compress PDF' }],
+  '/html-to-pdf':    [{ path:'/word-to-pdf', label:'Word to PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' },{ path:'/markdown-preview', label:'Markdown Preview' }],
+  '/pdf-to-pptx':    [{ path:'/pptx-to-pdf', label:'PPT to PDF' },{ path:'/pdf-to-word', label:'PDF to Word' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' }],
+  '/pptx-to-pdf':    [{ path:'/pdf-to-pptx', label:'PDF to PPT' },{ path:'/word-to-pdf', label:'Word to PDF' },{ path:'/compress-pdf', label:'Compress PDF' },{ path:'/merge-pdf', label:'Merge PDF' }],
+  '/json-beautifier':[{ path:'/json-validator', label:'JSON Validator' },{ path:'/json-to-csv', label:'JSON to CSV' },{ path:'/xml-beautifier', label:'XML Beautifier' },{ path:'/sql-formatter', label:'SQL Formatter' }],
+  '/json-validator': [{ path:'/json-beautifier', label:'JSON Beautifier' },{ path:'/json-to-csv', label:'JSON to CSV' },{ path:'/yaml-json', label:'YAML ↔ JSON' },{ path:'/xml-beautifier', label:'XML Beautifier' }],
+  '/sql-formatter':  [{ path:'/json-beautifier', label:'JSON Beautifier' },{ path:'/xml-beautifier', label:'XML Beautifier' },{ path:'/code-diff', label:'Code Diff' },{ path:'/hash-generator', label:'Hash Generator' }],
+  '/bg-remover':     [{ path:'/image-compressor', label:'Compress Image' },{ path:'/image-resizer', label:'Resize Image' },{ path:'/webp-converter', label:'WebP Converter' },{ path:'/image-cropper', label:'Crop Image' }],
+  '/image-compressor':[{ path:'/image-resizer', label:'Resize Image' },{ path:'/image-cropper', label:'Crop Image' },{ path:'/bg-remover', label:'Remove BG' },{ path:'/webp-converter', label:'WebP Converter' }],
+  '/image-resizer':  [{ path:'/image-compressor', label:'Compress Image' },{ path:'/image-cropper', label:'Crop Image' },{ path:'/bg-remover', label:'Remove BG' },{ path:'/webp-converter', label:'WebP Converter' }],
+  '/image-cropper':  [{ path:'/image-compressor', label:'Compress Image' },{ path:'/image-resizer', label:'Resize Image' },{ path:'/bg-remover', label:'Remove BG' },{ path:'/favicon-generator', label:'Favicon Generator' }],
+  '/heic-converter': [{ path:'/image-compressor', label:'Compress Image' },{ path:'/webp-converter', label:'WebP Converter' },{ path:'/jpg-to-pdf', label:'JPG to PDF' },{ path:'/bg-remover', label:'Remove BG' }],
+  '/webp-converter': [{ path:'/image-compressor', label:'Compress Image' },{ path:'/heic-converter', label:'HEIC to JPG' },{ path:'/svg-converter', label:'SVG Converter' },{ path:'/image-resizer', label:'Resize Image' }],
+  '/qr-generator':   [{ path:'/image-compressor', label:'Compress Image' },{ path:'/favicon-generator', label:'Favicon Generator' },{ path:'/color-converter', label:'Color Converter' },{ path:'/hash-generator', label:'Hash Generator' }],
+  '/hash-generator': [{ path:'/base64', label:'Base64 Encoder' },{ path:'/url-encode', label:'URL Encoder' },{ path:'/jwt-debugger', label:'JWT Debugger' },{ path:'/json-beautifier', label:'JSON Beautifier' }],
+  '/jwt-debugger':   [{ path:'/hash-generator', label:'Hash Generator' },{ path:'/base64', label:'Base64 Encoder' },{ path:'/json-beautifier', label:'JSON Beautifier' },{ path:'/url-encode', label:'URL Encoder' }],
+  '/word-count':     [{ path:'/word-compare', label:'Word Compare' },{ path:'/markdown-preview', label:'Markdown Preview' },{ path:'/lorem-ipsum', label:'Lorem Ipsum' },{ path:'/pdf-to-word', label:'PDF to Word' }],
+  '/word-compare':   [{ path:'/word-count', label:'Word Count' },{ path:'/code-diff', label:'Code Diff' },{ path:'/markdown-preview', label:'Markdown Preview' },{ path:'/json-beautifier', label:'JSON Beautifier' }],
+}
 
 const SITE_URL = 'https://tools.arkaserve.com'
 
@@ -116,6 +149,7 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
 export default function ToolPageLayout({ icon, title, description, children, onProcess, processing, result, onDownload, onReset }) {
   const { pathname } = useLocation()
   const meta = getPageMeta(pathname)
+  const related = RELATED_TOOLS[pathname] || []
   const steps = meta.steps || []
   const faqs = meta.faqs || []
 
@@ -235,7 +269,7 @@ export default function ToolPageLayout({ icon, title, description, children, onP
 
       {/* FAQ */}
       {faqs.length > 0 && (
-        <section>
+        <section className="mb-8">
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
             Frequently Asked Questions
           </h2>
@@ -256,6 +290,26 @@ export default function ToolPageLayout({ icon, title, description, children, onP
                   {faq.a}
                 </div>
               </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Related Tools — internal linking for SEO */}
+      {related.length > 0 && (
+        <section className="mt-2">
+          <h2 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+            Related Free Tools
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {related.map(({ path, label }) => (
+              <Link
+                key={path}
+                to={path}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-300 hover:text-red-600 dark:hover:text-red-400 transition-colors"
+              >
+                {label} →
+              </Link>
             ))}
           </div>
         </section>
