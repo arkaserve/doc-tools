@@ -7,12 +7,12 @@ export const PAGE_META = {
   '/': {
     title: 'DocCraft – Free PDF Tools, Document & Code Converters Online',
     desc: 'All-in-one free toolkit: merge PDF, split PDF, compress PDF, PDF to Word, Word to PDF, PDF to JPG, JSON formatter, SQL formatter, image converter, QR code generator. 60+ tools, no signup needed.',
-    keywords: 'free PDF tools online, merge PDF free, split PDF, compress PDF, PDF to Word, Word to PDF, PDF converter free, document tools, image converter, JSON formatter, SQL formatter, DocCraft',
+    keywords: 'free PDF tools online, free PDF tools no signup, free PDF tools without watermark, merge PDF free, split PDF free, compress PDF free, PDF to Word free, Word to PDF free, PDF converter free no email, document tools online free, image converter online free, JSON formatter free, SQL formatter free, free online tools for students, free tools for office work, DocCraft, best free PDF tools 2026, free PDF tools India, online tools no registration, all in one free tools online',
   },
   '/merge-pdf': {
     title: 'Merge PDF Online Free – Combine PDF Files into One | DocCraft',
-    desc: 'Combine multiple PDF files into one document online for free. Drag and drop to reorder pages, then merge instantly. No signup, no watermark — works entirely in your browser.',
-    keywords: 'merge PDF online free, combine PDF files, join PDF, merge multiple PDFs into one, PDF merger free, combine PDFs online, PDF joiner, merge PDF files free download, how to merge PDF files',
+    desc: 'Combine multiple PDF files into one document online for free. No signup, no watermark, no email. Works on mobile, iPhone, Android. Merge PDFs instantly in your browser.',
+    keywords: 'merge PDF online free, merge PDF no signup, merge PDF no watermark, merge PDF no email, combine PDF files free, join PDF online free, merge multiple PDFs into one free, PDF merger free online, combine PDFs online no limit, PDF joiner free, merge PDF files free download, how to merge PDF files, merge PDF on iPhone free, merge PDF on Android free, merge PDF on mobile free, merge PDF for free India, best free PDF merger, merge PDF instantly, combine 2 PDF files free, merge PDF files without Adobe',
     steps: [
       'Click "Upload Files" or drag and drop your PDF files onto the page — you can add up to 20 PDFs at once.',
       'Drag the file cards to rearrange them in the order you want before merging.',
@@ -27,8 +27,8 @@ export const PAGE_META = {
   },
   '/split-pdf': {
     title: 'Split PDF Online Free – Extract & Separate PDF Pages | DocCraft',
-    desc: 'Split a PDF into individual pages or extract custom page ranges online for free. Download each part separately. No software needed — works in any browser.',
-    keywords: 'split PDF online free, extract pages from PDF, separate PDF pages, split PDF into multiple files, PDF page extractor, split PDF by page range, divide PDF online free',
+    desc: 'Split a PDF into individual pages or extract custom page ranges online for free. No signup, no watermark, no email. Works on mobile, iPhone, Android, and all browsers instantly.',
+    keywords: 'split PDF online free, split PDF no signup, split PDF no watermark, extract pages from PDF free, separate PDF pages free, split PDF into multiple files free, PDF page extractor free, split PDF by page range free, divide PDF online free, how to split a PDF free, split PDF on iPhone free, split PDF on Android free, split PDF on mobile free, split PDF free India, extract specific pages from PDF free, split PDF without Adobe free, best free PDF splitter, split PDF instantly free, extract page from PDF free online, split 1 page from PDF free',
     steps: [
       'Upload your PDF file by clicking the button or dragging it onto the page.',
       'Choose to split into individual pages, or enter specific page ranges (e.g., 1-3, 5, 7-10) to extract.',
@@ -43,8 +43,8 @@ export const PAGE_META = {
   },
   '/compress-pdf': {
     title: 'Compress PDF Online Free – Reduce PDF File Size | DocCraft',
-    desc: 'Reduce PDF file size online for free without losing quality. Compress PDF for email, WhatsApp, or web upload. Choose compression level to balance size vs clarity. No signup needed.',
-    keywords: 'compress PDF online free, reduce PDF size, PDF compressor free, shrink PDF file size, compress PDF without losing quality, make PDF smaller online, reduce PDF MB, PDF size reducer',
+    desc: 'Reduce PDF file size online for free without losing quality. No signup, no watermark, no email. Compress PDF for email, WhatsApp, or web upload. Works on mobile and all browsers.',
+    keywords: 'compress PDF online free, compress PDF no signup, compress PDF no watermark, compress PDF without losing quality, reduce PDF file size free, PDF compressor free online, shrink PDF online free, make PDF smaller online free, compress PDF below 1MB free, compress PDF for email free, compress PDF for WhatsApp free, compress PDF for uploading free, PDF size reducer free, reduce PDF MB online, compress PDF on iPhone free, compress PDF on Android free, compress PDF free India, best free PDF compressor, compress PDF instantly online, PDF compressor without quality loss',
     steps: [
       'Upload your PDF file by clicking the button or dragging it onto the page.',
       'Select a compression level: Low (best quality), Medium (balanced), or High (smallest file size).',
@@ -59,8 +59,8 @@ export const PAGE_META = {
   },
   '/pdf-to-word': {
     title: 'PDF to Word Converter Free – Convert PDF to DOC, DOCX Online | DocCraft',
-    desc: 'Convert PDF to editable Word document (DOC or DOCX) online for free. Also works as PDF to Doc converter. Preserves text, tables, and formatting. No signup required — instant download.',
-    keywords: 'PDF to Word converter free, PDF to DOC, PDF to DOCX, convert PDF to Word online free, PDF to doc converter, change PDF to Word, PDF to editable Word, pdf to word online free no sign up, convert pdf to doc free',
+    desc: 'Convert PDF to editable Word document (DOC or DOCX) online for free. No signup, no watermark, no email required — instant download. Works on mobile, iPhone, Android, and all browsers.',
+    keywords: 'PDF to Word converter free, PDF to Word free no signup, PDF to Word no watermark, PDF to Word no email, PDF to DOCX free, PDF to DOC free, convert PDF to Word online free, PDF to doc converter, change PDF to Word, PDF to editable Word, pdf to word online free no sign up, convert pdf to doc free, pdf to word converter free download, pdf to word converter for mobile, pdf to word online iphone, pdf to word without losing formatting, best free pdf to word converter, pdf to word converter for students, pdf to word free India, convert pdf to word in seconds, pdf to word no limit',
     steps: [
       'Upload your PDF file by clicking the button or dragging it onto the page.',
       'The tool automatically converts your PDF to an editable Word document (DOCX format) preserving layout, text, and tables.',
@@ -75,8 +75,8 @@ export const PAGE_META = {
   },
   '/word-to-pdf': {
     title: 'Word to PDF Converter Free – Convert DOCX & DOC to PDF Online | DocCraft',
-    desc: 'Convert Word documents (DOC or DOCX) to PDF online for free. Get a professional, print-ready PDF in seconds. No email, no registration — just upload and convert.',
-    keywords: 'Word to PDF converter free, DOC to PDF, DOCX to PDF, convert Word to PDF online free, Word document to PDF, .doc to PDF free, word to pdf online converter, Microsoft Word to PDF',
+    desc: 'Convert Word documents (DOC or DOCX) to PDF online for free. No email, no signup, no watermark — just upload and convert. Works on mobile, iPhone, Android, and all browsers.',
+    keywords: 'Word to PDF converter free, Word to PDF no signup, Word to PDF no watermark, Word to PDF no email, DOC to PDF free, DOCX to PDF free, convert Word to PDF online free, Word document to PDF free, doc to pdf free online, word to pdf online converter free, Microsoft Word to PDF free, convert docx to pdf free India, word to pdf converter for mobile free, word to pdf on iPhone free, word to pdf without Microsoft Office free, word to pdf instantly free, best free word to pdf converter, convert word to pdf in seconds free, word to pdf converter for students free, word to pdf free download',
     steps: [
       'Upload your Word document (.doc or .docx) by clicking the button or dragging it onto the page.',
       'The converter automatically turns your Word file into a print-ready PDF, preserving all formatting.',
@@ -267,8 +267,8 @@ export const PAGE_META = {
   },
   '/json-beautifier': {
     title: 'JSON Beautifier & Formatter Online Free – Pretty Print JSON | DocCraft',
-    desc: 'Format and pretty-print minified JSON with proper indentation and syntax highlighting online for free. Also compact JSON to one line. Instant JSON formatter.',
-    keywords: 'JSON beautifier online free, JSON formatter, pretty print JSON, format JSON online, JSON indenter, JSON pretty printer, minify JSON, JSON viewer online, JSON formatter free',
+    desc: 'Format and pretty-print minified JSON with proper indentation and syntax highlighting online for free. Also validate and minify JSON to one line. Instant JSON formatter tool.',
+    keywords: 'JSON beautifier online free, JSON formatter online free, JSON formatter no signup, pretty print JSON online free, format JSON online free, JSON indenter free, JSON pretty printer free, minify JSON online free, JSON viewer online free, JSON formatter and validator free, format JSON for API free, JSON beautifier for large files free, JSON formatter Chrome extension alternative, best JSON formatter online, JSON formatter for developers free, JSON to readable format free, JSON formatter India free, online JSON formatter instant, JSON beautifier tool free, JSON formatter without limit',
     steps: [
       'Paste your JSON string into the input area on the left — even minified single-line JSON works.',
       'The formatter automatically beautifies and syntax-highlights your JSON with proper indentation in real time.',
@@ -347,8 +347,8 @@ export const PAGE_META = {
   },
   '/qr-generator': {
     title: 'QR Code Generator Online Free – Create & Download QR Codes | DocCraft',
-    desc: 'Generate custom QR codes for URLs, text, email, phone numbers, or contact cards online for free. Download as high-resolution PNG. No signup needed.',
-    keywords: 'QR code generator online free, create QR code, QR code maker, generate QR code from URL, custom QR code free, QR code creator, free QR code generator no sign up',
+    desc: 'Generate custom QR codes for URLs, text, UPI payment, email, phone numbers, or contact cards online for free. High-resolution PNG download. No signup, no watermark.',
+    keywords: 'QR code generator online free, QR code generator no signup, QR code generator no watermark, create QR code free, QR code maker free, generate QR code from URL free, QR code for UPI payment free, QR code for WhatsApp free, custom QR code free, QR code creator free download, free QR code generator no sign up, QR code generator for business free, QR code generator India free, make QR code for website free, QR code generator for Instagram free, QR code for WiFi free, QR code scanner and generator free, best free QR code generator, QR code generator high resolution free, QR code generator for students',
     steps: [
       'Select the QR type: URL, plain text, email, phone number, SMS, or vCard contact.',
       'Enter your content — the QR code preview updates in real time as you type.',
@@ -411,8 +411,8 @@ export const PAGE_META = {
   },
   '/image-compressor': {
     title: 'Image Compressor Online Free – Reduce Image File Size | DocCraft',
-    desc: 'Compress JPEG, PNG, and WebP images online for free. Adjust quality with a slider and see live before/after file size savings. No upload to cloud servers.',
-    keywords: 'image compressor online free, reduce image size, compress JPEG online free, compress PNG free, image size reducer, photo compressor free, shrink image file size online',
+    desc: 'Compress JPEG, PNG, and WebP images online for free. No signup, no watermark, no cloud upload — works in your browser. Reduce image size for websites, email, and WhatsApp instantly.',
+    keywords: 'image compressor online free, image compressor no signup, image compressor no watermark, reduce image size free, compress JPEG online free, compress PNG free, image size reducer free, photo compressor free online, shrink image file size free, compress image for website free, compress image for WhatsApp free, compress image for email free, compress image without losing quality free, compress photo online free India, best free image compressor, compress image below 100KB free, compress image below 200KB free, reduce image file size online instantly, compress image for Instagram free, image compressor for mobile free',
     steps: [
       'Upload your image (JPG, PNG, or WebP) by clicking the button or dragging it onto the page.',
       'Drag the quality slider to balance between file size and image sharpness — see the live before/after size comparison.',
@@ -442,9 +442,9 @@ export const PAGE_META = {
     ],
   },
   '/bg-remover': {
-    title: 'Background Remover Online Free – Remove Image Background | DocCraft',
-    desc: 'Remove backgrounds from product photos, portraits, and logos using AI online for free. Download as transparent PNG. No signup — instant background removal.',
-    keywords: 'background remover online free, remove background from image, transparent background maker, image background eraser free, remove white background from image, AI background remover',
+    title: 'Background Remover Online Free – Remove Image Background with AI | DocCraft',
+    desc: 'Remove backgrounds from product photos, portraits, and logos using AI online for free. Download as transparent PNG. No signup, no watermark — instant background removal on mobile and desktop.',
+    keywords: 'background remover online free, background remover no signup, background remover no watermark, remove background from image free, transparent background maker free, image background eraser free, remove white background from image free, AI background remover free, background remover for products free, background remover for ecommerce free, background remover for passport photo free, remove background from photo free India, background remover tool free online, best free background remover, background remover like remove.bg free, remove background from image on iPhone free, remove background from photo instantly free, background remover for Shopify free, background remover for Amazon product photos free, transparent PNG maker free',
     steps: [
       'Upload your photo (product, portrait, or logo) by clicking the button or dragging it onto the page.',
       'The AI automatically detects the subject and removes the background in seconds.',
@@ -921,6 +921,31 @@ export const PAGE_META = {
       { q: 'Is my code kept private?', a: 'Yes. Code cleaning happens in your browser. Your code is not stored or transmitted to any external server.' },
     ],
   },
+  '/heic-converter': {
+    title: 'HEIC to JPG Converter Online Free – Convert iPhone Photos Instantly | DocCraft',
+    desc: 'Convert iPhone HEIC and HEIF photos to JPG or PNG right in the browser for free. No signup, no watermark, no upload to cloud. Works on Windows, Android, Mac instantly.',
+    keywords: 'HEIC to JPG converter online free, HEIC to JPG no signup, HEIC to JPEG free, convert HEIC to JPG free, iPhone photo to JPG free, HEIF to JPG free, Apple photo to JPEG free, HEIC converter online free no signup, HEIC to JPG Windows free, HEIC to JPG Android free, HEIC to JPG Mac free, HEIC to PNG free, how to open HEIC file free, HEIC photo converter free India, convert iPhone photos to JPG free, HEIC to JPG instantly free, best free HEIC converter, HEIC file opener free, convert HEIC without software free, HEIC converter batch free',
+  },
+  '/sql-formatter': {
+    title: 'SQL Formatter & Beautifier Online Free – Format SQL Queries | DocCraft',
+    desc: 'Format messy SQL queries into clean, readable code online for free. Supports MySQL, PostgreSQL, SQLite, SQL Server, Oracle. No signup, instant SQL beautifier.',
+    keywords: 'SQL formatter online free, SQL formatter no signup, SQL beautifier free, format SQL query online free, SQL pretty printer free, MySQL formatter free, PostgreSQL formatter free, T-SQL formatter free, SQL query formatter free, reformat SQL online free, SQL formatter for developers free, format SQL code free, SQL indenter free, SQL formatter no limit free, best free SQL formatter, SQL formatter India free, online SQL formatter instant, SQL query beautifier free, format SQL for readability free, SQL formatter without download',
+  },
+  '/protect-pdf': {
+    title: 'Password Protect PDF Online Free – Lock & Encrypt PDF | DocCraft',
+    desc: 'Add password protection to any PDF file online for free. Lock your PDF with AES-128 encryption. No signup, no watermark, no email. Also remove PDF passwords free.',
+    keywords: 'password protect PDF online free, protect PDF no signup, lock PDF with password free, PDF password protection free, encrypt PDF free online, secure PDF online free, add password to PDF free, PDF locker free online, remove PDF password free, unlock PDF free online, PDF encryption free, protect PDF file free India, lock PDF without Adobe free, password protect PDF on iPhone free, password protect PDF on mobile free, best free PDF password protector, protect PDF instantly free, PDF password remover free, lock PDF file free online, PDF security tool free',
+  },
+  '/pdf-to-jpg': {
+    title: 'PDF to JPG Converter Free – Convert PDF to Image Online | DocCraft',
+    desc: 'Convert every PDF page to high-resolution JPG or PNG images online for free. No signup, no watermark, no email. Works on mobile and all browsers — instant download.',
+    keywords: 'PDF to JPG converter free, PDF to JPG no signup, PDF to JPG no watermark, PDF to image online free, convert PDF to JPG free, PDF to PNG free, PDF to picture free, PDF page to image free, PDF to JPEG free online, export PDF as image free, PDF to JPG online no limit, PDF to JPG on iPhone free, PDF to JPG on Android free, convert PDF to image free India, PDF to JPG high quality free, best free PDF to image converter, PDF to JPG instantly free, PDF to photo free, PDF to JPG for all pages free, PDF to JPEG without email',
+  },
+  '/jpg-to-pdf': {
+    title: 'JPG to PDF Converter Free – Convert Images to PDF Online | DocCraft',
+    desc: 'Convert JPG, PNG, WebP, or HEIC images to a PDF document online for free. Combine multiple photos into one PDF. No signup, no watermark, no email — instant download.',
+    keywords: 'JPG to PDF converter free, JPG to PDF no signup, JPG to PDF no watermark, image to PDF free, convert JPG to PDF online free, PNG to PDF free, photo to PDF free, pictures to PDF free, multiple images to PDF free, combine photos to PDF free, JPG to PDF on iPhone free, JPG to PDF on Android free, JPG to PDF free India, HEIC to PDF free, image to PDF converter free online, best free JPG to PDF converter, convert photos to PDF instantly free, JPG to PDF no limit free, image to PDF no email free, photos to PDF for printing free',
+  },
   '/about': {
     title: 'About DocCraft – Free Online PDF & Document Tools by Arkaserve',
     desc: 'Learn about DocCraft, the free all-in-one document, PDF, and code tools platform by Arkaserve. 60+ tools, no signup required.',
@@ -930,6 +955,11 @@ export const PAGE_META = {
     title: 'Contact DocCraft – Get in Touch | DocCraft',
     desc: 'Contact the DocCraft team for support, feedback, or questions about our free online document and PDF tools.',
     keywords: 'contact DocCraft, DocCraft support, PDF tools help',
+  },
+  '/privacy-policy': {
+    title: 'Privacy Policy – DocCraft by Arkaserve',
+    desc: 'Read the DocCraft privacy policy. Learn how we handle your files, cookies, and data on our free online tool platform.',
+    keywords: 'DocCraft privacy policy, Arkaserve privacy, free tools privacy policy',
   },
 }
 
