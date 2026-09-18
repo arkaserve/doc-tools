@@ -80,7 +80,7 @@ export default function ContactUs() {
           </p>
 
           {[
-            { icon: Mail,    bg: '#fef2f2', ic: ACCENT2,   title: 'Email',          sub: 'contact@arkaserve.com' },
+            { icon: Mail,    bg: '#fef2f2', ic: ACCENT2,   title: 'Email',          sub: 'support@arkaserve.com' },
             { icon: Clock,   bg: '#eff6ff', ic: '#2563eb',  title: 'Response time',  sub: 'Within 1–2 business days' },
             { icon: MapPin,  bg: '#f0fdf4', ic: '#16a34a',  title: 'Location',       sub: 'Hyderabad, Telangana, India' },
           ].map(({ icon: Icon, bg, ic, title, sub }) => (
