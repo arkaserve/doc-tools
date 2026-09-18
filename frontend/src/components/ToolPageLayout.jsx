@@ -155,6 +155,18 @@ export default function ToolPageLayout({ icon, title, description, children, onP
   const faqs = meta.faqs || []
 
   useEffect(() => {
+    // Update <title>, meta description, and canonical per tool page
+    if (meta.title) document.title = meta.title
+    const descEl = document.querySelector('meta[name="description"]')
+    if (descEl && meta.desc) descEl.setAttribute('content', meta.desc)
+    let canonicalEl = document.querySelector('link[rel="canonical"]')
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link')
+      canonicalEl.rel = 'canonical'
+      document.head.appendChild(canonicalEl)
+    }
+    canonicalEl.setAttribute('href', `${SITE_URL}${pathname}`)
+
     const existing = document.getElementById('tool-page-jsonld')
     if (existing) existing.remove()
 
@@ -192,7 +204,7 @@ export default function ToolPageLayout({ icon, title, description, children, onP
       const el = document.getElementById('tool-page-jsonld')
       if (el) el.remove()
     }
-  }, [pathname, title, description])
+  }, [pathname, title, description, meta])
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
