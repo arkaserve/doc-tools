@@ -1,0 +1,69 @@
+# DocCraft by Arkaserve
+# https://tools.arkaserve.com
+
+> DocCraft is a free online toolkit with 60+ tools for PDF manipulation, document conversion, developer utilities, and image processing. No signup, no watermark, no file size limits.
+
+## PDF Tools
+- Merge PDF: Combine multiple PDFs into one — https://tools.arkaserve.com/merge-pdf
+- Split PDF: Extract pages from a PDF — https://tools.arkaserve.com/split-pdf
+- Compress PDF: Reduce PDF file size — https://tools.arkaserve.com/compress-pdf
+- PDF to Word: Convert PDF to editable DOCX — https://tools.arkaserve.com/pdf-to-word
+- Word to PDF: Convert Word documents to PDF — https://tools.arkaserve.com/word-to-pdf
+- PDF to JPG: Extract PDF pages as images — https://tools.arkaserve.com/pdf-to-jpg
+- JPG to PDF: Convert images to PDF — https://tools.arkaserve.com/jpg-to-pdf
+- Rotate PDF: Rotate PDF pages — https://tools.arkaserve.com/rotate-pdf
+- Watermark PDF: Add text/image watermarks — https://tools.arkaserve.com/watermark-pdf
+- Protect PDF: Add or remove PDF passwords — https://tools.arkaserve.com/protect-pdf
+- PDF to Excel: Extract tables from PDF — https://tools.arkaserve.com/pdf-to-excel
+- Excel to PDF: Convert spreadsheets to PDF — https://tools.arkaserve.com/excel-to-pdf
+- HTML to PDF: Convert web pages to PDF — https://tools.arkaserve.com/html-to-pdf
+- PDF to PowerPoint: Convert PDF to PPTX — https://tools.arkaserve.com/pdf-to-pptx
+- PowerPoint to PDF: Convert PPTX to PDF — https://tools.arkaserve.com/pptx-to-pdf
+- PDF Analyzer: Analyze PDF metadata and structure — https://tools.arkaserve.com/analyze-pdf
+
+## Developer Tools
+- JSON Beautifier: Format and prettify JSON — https://tools.arkaserve.com/json-beautifier
+- JSON Validator: Validate JSON syntax — https://tools.arkaserve.com/json-validator
+- JSON to CSV: Convert JSON arrays to CSV — https://tools.arkaserve.com/json-to-csv
+- XML Beautifier: Format XML documents — https://tools.arkaserve.com/xml-beautifier
+- SQL Formatter: Format SQL queries — https://tools.arkaserve.com/sql-formatter
+- JWT Debugger: Decode and verify JWT tokens — https://tools.arkaserve.com/jwt-debugger
+- Regex Tester: Test regular expressions — https://tools.arkaserve.com/regex-tester
+- Base64: Encode/decode Base64 — https://tools.arkaserve.com/base64
+- URL Encode/Decode: Encode and decode URLs — https://tools.arkaserve.com/url-encode
+- Hash Generator: Generate MD5, SHA256, SHA512 hashes — https://tools.arkaserve.com/hash-generator
+- YAML to JSON: Convert between YAML and JSON — https://tools.arkaserve.com/yaml-json
+- Markdown Preview: Preview Markdown files — https://tools.arkaserve.com/markdown-preview
+- Code Diff: Compare two code snippets — https://tools.arkaserve.com/code-diff
+- Cron Descriptor: Explain cron expressions — https://tools.arkaserve.com/cron-descriptor
+- QR Code Generator: Generate QR codes — https://tools.arkaserve.com/qr-generator
+
+## Image & Media Tools
+- Image Compressor: Compress JPG/PNG/WebP images — https://tools.arkaserve.com/image-compressor
+- Image Resizer: Resize images to custom dimensions — https://tools.arkaserve.com/image-resizer
+- Image Cropper: Crop images online — https://tools.arkaserve.com/image-cropper
+- Background Remover: Remove image backgrounds with AI — https://tools.arkaserve.com/bg-remover
+- WebP Converter: Convert images to/from WebP — https://tools.arkaserve.com/webp-converter
+- HEIC to JPG: Convert iPhone HEIC photos to JPG — https://tools.arkaserve.com/heic-converter
+- SVG Converter: Convert SVG to PNG or WebP — https://tools.arkaserve.com/svg-converter
+- Favicon Generator: Create favicons from images — https://tools.arkaserve.com/favicon-generator
+- Color Palette: Extract colors from images — https://tools.arkaserve.com/color-palette
+- CSS Gradient Maker: Generate CSS gradient code — https://tools.arkaserve.com/css-gradient
+- Color Converter: Convert between HEX, RGB, HSL — https://tools.arkaserve.com/color-converter
+
+## Text & Word Tools
+- Word Compare: Compare two documents — https://tools.arkaserve.com/word-compare
+- Word Count: Count words, characters, sentences — https://tools.arkaserve.com/word-count
+- Lorem Ipsum Generator: Generate placeholder text — https://tools.arkaserve.com/lorem-ipsum
+
+## Utility Tools
+- Unit Converter: Convert length, weight, temperature, etc. — https://tools.arkaserve.com/unit-converter
+- Timezone Converter: Convert times across timezones — https://tools.arkaserve.com/timezone-converter
+- Calendar Converter: Convert between calendar systems — https://tools.arkaserve.com/calendar-converter
+- IP/CIDR Calculator: Calculate IP ranges and subnets — https://tools.arkaserve.com/ip-calculator
+- Number Base Converter: Convert between binary, hex, decimal — https://tools.arkaserve.com/number-base
+
+## Company
+- About: https://arkaserve.com/#about
+- Contact: https://tools.arkaserve.com/contact
+- Privacy Policy: https://tools.arkaserve.com/privacy-policy
