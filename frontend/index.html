@@ -154,29 +154,22 @@
     <!-- ── Fonts: preconnect first, then load async (non-blocking) ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- font-display=optional: browser uses system font if webfont isn't cached yet (zero CLS, zero render block) -->
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" />
     </noscript>
 
-    <!-- ── Critical inline CSS: system font until webfont loads (prevents FOUT) ── -->
+    <!-- ── Critical inline CSS: fast system font default, zero layout shift ── -->
     <style>
-      :root { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+      :root { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif; }
       body { margin: 0; background: #f9fafb; }
-      /* Apply webfont once loaded — no layout shift */
-      .fonts-loaded :root, .fonts-loaded body, .fonts-loaded * {
-        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
-      }
     </style>
-    <script>
-      // Mark fonts as loaded so CSS above kicks in
-      document.fonts.ready.then(() => document.documentElement.classList.add('fonts-loaded'))
-    </script>
   </head>
   <body>
     <div id="root"></div>
