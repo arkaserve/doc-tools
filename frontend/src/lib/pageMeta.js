@@ -19,10 +19,10 @@ export const PAGE_META = {
       'Click "Merge PDF" and download the combined single PDF file instantly. No signup needed.',
     ],
     faqs: [
-      { q: 'Is merging PDF files free?', a: 'Yes, 100% free - no account, no subscription, no watermark added to your file. You can merge unlimited PDFs for free on Arkaserve Tools.' },
-      { q: 'How many PDF files can I merge at once?', a: 'You can merge up to 20 PDF files in a single operation. Each file can be up to 100 MB.' },
+      { q: 'Is merging PDF files free?', a: 'Yes, 100% free -- no signup needed, no account, no subscription, and no watermark added to your file. It is completely free to use on any device. You can merge unlimited PDFs for free on Arkaserve Tools.' },
+      { q: 'Does it work on iPhone and Android?', a: 'Yes. This tool works on iPhone, Android, Windows, Mac, and all browsers -- no app download needed. Just open the website and merge PDFs for free from any device.' },
       { q: 'Are my uploaded PDF files secure?', a: 'Yes. Files are processed securely on our servers and automatically deleted within 1 hour. We never read, store, or share your documents.' },
-      { q: 'Can I reorder pages before merging PDFs?', a: 'Yes. Drag the PDF cards to rearrange them in any order before clicking Merge. The merged file will follow your exact ordering.' },
+      { q: 'Can I reorder pages before merging PDFs?', a: 'Yes. Drag the PDF cards to rearrange them in any order before clicking Merge. The merged file will follow your exact ordering. No Adobe Acrobat needed -- it is completely free.' },
     ],
   },
   '/split-pdf': {
@@ -35,10 +35,10 @@ export const PAGE_META = {
       'Click Split and download individual PDF files or a ZIP archive of all pages.',
     ],
     faqs: [
-      { q: 'Is splitting a PDF free?', a: 'Yes, completely free. No sign-up required and no limits on the number of splits.' },
-      { q: 'Can I extract specific pages from a PDF?', a: 'Yes. You can extract individual pages or custom page ranges. Just enter the pages you want, like "1-3, 5, 8".' },
-      { q: 'Can I split a password-protected PDF?', a: 'You will need to remove the password first using our Protect PDF tool, then split the unlocked file.' },
-      { q: 'Is there a file size limit for splitting?', a: 'The recommended file size is under 100 MB. Larger files may take longer to process.' },
+      { q: 'Is splitting a PDF free?', a: 'Yes, completely free -- no signup needed, no watermark, no email required. It is 100% free with no limits on the number of splits. Works on iPhone, Android, and all browsers.' },
+      { q: 'Can I extract specific pages from a PDF?', a: 'Yes. You can extract individual pages or custom page ranges -- completely free. Just enter the pages you want, like "1-3, 5, 8". No Adobe Acrobat or any software needed.' },
+      { q: 'Can I split a password-protected PDF?', a: 'You will need to remove the password first using our Protect PDF tool, then split the unlocked file. Both tools are completely free with no signup needed.' },
+      { q: 'Is there a file size limit for splitting?', a: 'The recommended file size is under 100 MB. Larger files may take longer to process. The tool is free for students, professionals, and anyone in India or anywhere in the world.' },
     ],
   },
   '/compress-pdf': {
@@ -51,10 +51,10 @@ export const PAGE_META = {
       'Click "Compress PDF" and download your smaller PDF file instantly - completely free.',
     ],
     faqs: [
-      { q: 'Is compressing a PDF free?', a: 'Yes, 100% free. No registration or payment required. Compress as many PDFs as you like.' },
-      { q: 'Will compression reduce the quality of my PDF?', a: 'At Low and Medium settings, quality loss is minimal and usually unnoticeable. High compression reduces file size the most but may slightly reduce image clarity.' },
-      { q: 'How much can I reduce a PDF file size?', a: 'Depending on the content, you can typically reduce PDF size by 40--80%. PDFs with many images compress much more than text-only documents.' },
-      { q: 'Why do I need to compress a PDF?', a: 'Compressed PDFs are easier to send via email (most have 25 MB limits), WhatsApp, or upload to web forms. They also load faster online.' },
+      { q: 'Is compressing a PDF free?', a: 'Yes, 100% free -- no signup needed, no watermark, no registration or payment required. Compress as many PDFs as you like, completely free on any device.' },
+      { q: 'Does it work on mobile -- iPhone and Android?', a: 'Yes. Compress PDF free on iPhone, Android, Windows, and Mac directly in your browser. No app download or Adobe Acrobat needed. It is completely free for everyone including students.' },
+      { q: 'How much can I reduce a PDF file size?', a: 'You can typically reduce PDF size by 40--80%. Great for compressing PDFs below 1MB for WhatsApp, email attachments, or college form uploads. PDFs with many images compress the most.' },
+      { q: 'Why do I need to compress a PDF?', a: 'Compressed PDFs are easier to send via email (most email providers have a 25 MB limit), WhatsApp, or upload to government and college portals. No signup needed -- just compress and download free.' },
     ],
   },
   '/pdf-to-word': {
@@ -67,10 +67,10 @@ export const PAGE_META = {
       'Click Download to save your editable .docx file - no signup, completely free.',
     ],
     faqs: [
-      { q: 'Is the PDF to Word conversion free?', a: 'Yes, 100% free with no signup, no watermark, and no page limits. Convert as many PDFs as you need.' },
-      { q: 'Will the converted Word file be editable?', a: 'Yes, the output .docx file is fully editable in Microsoft Word, Google Docs, LibreOffice, and any other word processor.' },
-      { q: 'Does it preserve formatting and tables?', a: 'Yes. Our converter preserves text layout, fonts, paragraphs, bullet points, and tables as closely as possible.' },
-      { q: 'Can I convert a scanned PDF to Word?', a: 'Scanned PDFs require OCR (Optical Character Recognition). Our tool works best with digitally created PDFs. For scanned documents, results may vary.' },
+      { q: 'Is the PDF to Word conversion free?', a: 'Yes, 100% free -- no signup needed, no watermark, no email required, and no page limits. It is completely free to convert as many PDFs as you need, for students and professionals alike.' },
+      { q: 'Does it work on iPhone, Android, and mobile?', a: 'Yes. Convert PDF to Word free on iPhone, Android, and any mobile browser -- no app download needed. Works on Windows and Mac too. Completely free, no Adobe required.' },
+      { q: 'Does it preserve formatting and tables?', a: 'Yes. Our converter preserves text layout, fonts, paragraphs, bullet points, and tables as closely as possible. The output .docx file is fully editable in Microsoft Word, Google Docs, and LibreOffice.' },
+      { q: 'Can I convert a scanned PDF to Word?', a: 'Our tool works best with digitally created PDFs. For scanned PDFs, OCR is needed and results may vary. For digital PDFs, the conversion is instant, free, and requires no signup.' },
     ],
   },
   '/word-to-pdf': {
@@ -83,10 +83,10 @@ export const PAGE_META = {
       'Download your PDF file instantly - no signup, no watermark, completely free.',
     ],
     faqs: [
-      { q: 'Is Word to PDF conversion free?', a: 'Yes, completely free. No account, no subscription, no watermark on the output PDF.' },
-      { q: 'Does it support both .doc and .docx files?', a: 'Yes, both older .doc and modern .docx Word formats are fully supported.' },
-      { q: 'Will fonts and formatting be preserved?', a: 'Yes. The PDF output preserves your fonts, headings, images, tables, and overall layout from the Word document.' },
-      { q: 'Is there a file size limit?', a: 'Files up to 50 MB are supported. For very large documents, processing may take a few extra seconds.' },
+      { q: 'Is Word to PDF conversion free?', a: 'Yes, completely free -- no signup needed, no account, no subscription, and no watermark on the output PDF. It is 100% free for students, office use, and anyone in India or worldwide.' },
+      { q: 'Does it work on iPhone, Android, and mobile?', a: 'Yes. Convert Word to PDF free on iPhone, Android, and all mobile browsers. No Microsoft Office needed and no app to install. Just upload your .doc or .docx file and download the PDF instantly, completely free.' },
+      { q: 'Will fonts and formatting be preserved?', a: 'Yes. The PDF output preserves your fonts, headings, images, tables, and overall layout from the Word document. No watermark is added -- the PDF is clean and ready to share.' },
+      { q: 'Is there a file size limit?', a: 'Files up to 50 MB are supported. The conversion is instant and completely free. No signup required -- just upload and download your PDF.' },
     ],
   },
   '/pdf-to-jpg': {
@@ -99,10 +99,10 @@ export const PAGE_META = {
       'Click Convert and download each page as a separate image file, or get all pages in a ZIP.',
     ],
     faqs: [
-      { q: 'Is PDF to JPG conversion free?', a: 'Yes, 100% free with no signup required. Convert all pages of any PDF to images at no cost.' },
-      { q: 'Can I convert all pages of a PDF to images?', a: 'Yes. Every page in your PDF is converted to a separate image file. Download individually or as a ZIP archive.' },
-      { q: 'What image quality will the output be?', a: 'The default resolution is 150 DPI, which is great for screen use. Select higher DPI for print-quality images.' },
-      { q: 'Should I choose JPG or PNG output?', a: 'JPG is best for photos and documents with many colors (smaller file size). PNG is best for documents with text, line art, or when you need a transparent background.' },
+      { q: 'Is PDF to JPG conversion free?', a: 'Yes, 100% free -- no signup needed, no watermark, no email required. Convert all pages of any PDF to images at no cost, completely free on iPhone, Android, and all browsers.' },
+      { q: 'Can I convert all pages of a PDF to images?', a: 'Yes. Every page in your PDF is converted to a separate image file -- completely free. Download pages individually or as a ZIP archive. No Adobe needed, no signup required.' },
+      { q: 'What image quality will the output be?', a: 'The default resolution is 150 DPI, great for screen and WhatsApp sharing. Select higher DPI for print-quality images. The conversion is completely free with no watermark added.' },
+      { q: 'Should I choose JPG or PNG output?', a: 'JPG is best for photos and documents with many colors -- smaller file size, great for sharing on WhatsApp or email. PNG is best for text and line art. Both formats are free with no signup needed.' },
     ],
   },
   '/jpg-to-pdf': {
@@ -115,10 +115,10 @@ export const PAGE_META = {
       'Click "Convert to PDF" and download your PDF document instantly - no signup needed.',
     ],
     faqs: [
-      { q: 'Is JPG to PDF conversion free?', a: 'Yes, completely free. No registration, no watermark, no limits on the number of images.' },
-      { q: 'Can I combine multiple images into one PDF?', a: 'Yes. Upload as many images as you like and they will all be combined into a single PDF, one image per page.' },
-      { q: 'What image formats are supported?', a: 'JPG/JPEG, PNG, WebP, BMP, and HEIC (iPhone photos) are all supported.' },
-      { q: 'Will the image quality be preserved in the PDF?', a: 'Yes. Images are embedded at their original quality. The PDF will look just as sharp as your original image files.' },
+      { q: 'Is JPG to PDF conversion free?', a: 'Yes, completely free -- no signup needed, no registration, no watermark, no limits on the number of images. It is 100% free for students and professionals.' },
+      { q: 'Does it work on iPhone and Android?', a: 'Yes. Convert JPG to PDF free on iPhone, Android, Windows, and Mac -- no app needed. Just open the site in your browser, upload your photos, and download the PDF instantly. Completely free.' },
+      { q: 'What image formats are supported?', a: 'JPG/JPEG, PNG, WebP, BMP, and HEIC (iPhone photos) are all supported -- completely free with no signup needed. Great for converting screenshots, scanned documents, and photos to PDF.' },
+      { q: 'Will the image quality be preserved in the PDF?', a: 'Yes. Images are embedded at their original quality -- no watermark, no quality loss. The PDF will look just as sharp as your original image files. Download free, no email required.' },
     ],
   },
   '/rotate-pdf': {
@@ -131,10 +131,10 @@ export const PAGE_META = {
       'Click "Rotate PDF" and download the corrected PDF with permanently saved orientation.',
     ],
     faqs: [
-      { q: 'Is rotating a PDF free?', a: 'Yes, 100% free. No signup and no watermark on the output file.' },
-      { q: 'Can I rotate only specific pages in a PDF?', a: 'Yes. You can rotate individual pages or select a range of pages. Not all pages need to be rotated the same way.' },
-      { q: 'Is the rotation permanent?', a: 'Yes. The rotation is saved permanently in the PDF. The corrected orientation will appear in any PDF viewer.' },
-      { q: 'What rotation angles are supported?', a: '90° clockwise, 180° (upside down), and 270° clockwise (or 90° counter-clockwise) are all supported.' },
+      { q: 'Is rotating a PDF free?', a: 'Yes, 100% free -- no signup needed, no watermark, and completely free to use on any device including iPhone, Android, Windows, and Mac.' },
+      { q: 'Can I rotate only specific pages in a PDF?', a: 'Yes. You can rotate individual pages or a range of pages -- completely free, no signup needed. Not all pages need to be rotated the same way. No Adobe Acrobat required.' },
+      { q: 'Is the rotation permanent?', a: 'Yes. The rotation is saved permanently in the PDF. The corrected orientation will appear in any PDF viewer. The output file has no watermark and is completely free to download.' },
+      { q: 'What rotation angles are supported?', a: '90° clockwise, 180° (upside down), and 270° clockwise are all supported. All rotations are free with no signup needed -- works on mobile and desktop browsers.' },
     ],
   },
   '/watermark-pdf': {
@@ -163,10 +163,10 @@ export const PAGE_META = {
       'Click "Protect PDF" and download the encrypted, password-protected PDF file instantly.',
     ],
     faqs: [
-      { q: 'Is PDF password protection free?', a: 'Yes, 100% free with no signup. Protect as many PDFs as you need.' },
-      { q: 'What encryption does this use?', a: 'AES-128 bit encryption is applied, which is the standard used by most PDF viewers and considered secure for document protection.' },
-      { q: 'Can I also remove a password from a PDF with this tool?', a: 'Yes. If you know the existing password, you can upload the locked PDF and remove its password using the same tool.' },
-      { q: 'Will the password-protected PDF work in all PDF viewers?', a: 'Yes. The protected PDF is compatible with Adobe Acrobat, Preview (Mac), Chrome, Firefox, and all standard PDF viewers.' },
+      { q: 'Is PDF password protection free?', a: 'Yes, 100% free -- no signup needed, no watermark, completely free to protect as many PDFs as you need. Works on iPhone, Android, Windows, and Mac.' },
+      { q: 'What encryption does this use?', a: 'AES-128 bit encryption is applied -- the industry standard for PDF security. It is completely free and no signup is needed. Your file is processed securely and deleted from our servers within 1 hour.' },
+      { q: 'Can I also remove a password from a PDF with this tool?', a: 'Yes. If you know the existing password, you can upload the locked PDF and remove its password using the same tool -- completely free, no signup needed.' },
+      { q: 'Will the password-protected PDF work in all PDF viewers?', a: 'Yes. Compatible with Adobe Acrobat, Preview (Mac), Chrome, Firefox, and all PDF viewers on iPhone and Android. Completely free, no email required.' },
     ],
   },
   '/excel-to-pdf': {
@@ -179,10 +179,10 @@ export const PAGE_META = {
       'Download your PDF document instantly - no signup or account required.',
     ],
     faqs: [
-      { q: 'Is Excel to PDF conversion free?', a: 'Yes, completely free. No Microsoft Office installation needed and no signup required.' },
-      { q: 'Does it support both .xls and .xlsx files?', a: 'Yes, both older .xls and modern .xlsx Excel file formats are supported.' },
-      { q: 'Will the formatting and tables be preserved?', a: 'Yes. Column widths, row heights, borders, colors, and merged cells are preserved in the PDF output.' },
-      { q: 'Can I convert a multi-sheet Excel workbook?', a: 'Yes. All sheets in the workbook are converted to the PDF. Each sheet becomes a set of pages in the output document.' },
+      { q: 'Is Excel to PDF conversion free?', a: 'Yes, completely free -- no signup needed, no Microsoft Office installation required, no watermark. It is 100% free for students, office work, and business use in India and worldwide.' },
+      { q: 'Does it work on iPhone, Android, and mobile?', a: 'Yes. Convert Excel to PDF free on iPhone, Android, and all browsers -- no app to install. Just upload your .xlsx or .xls file and download the PDF instantly. Completely free, no email required.' },
+      { q: 'Will the formatting and tables be preserved?', a: 'Yes. Column widths, row heights, borders, colors, and merged cells are preserved in the PDF output. No watermark is added -- the PDF is clean, professional, and completely free.' },
+      { q: 'Can I convert a multi-sheet Excel workbook?', a: 'Yes. All sheets in the workbook are converted to the PDF -- each sheet becomes its own section. Completely free, no signup needed, works on any device.' },
     ],
   },
   '/pdf-to-excel': {
