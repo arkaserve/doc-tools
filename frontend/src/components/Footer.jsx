@@ -83,7 +83,7 @@ export default function Footer() {
           {/* Company */}
           <FooterCol replace={shouldReplace} title="Company" links={[
             ['Home',           '/'],
-            ['About',          'https://arkaserve.com/#about',  true],
+            ['About',          '/about'],
             ['Careers',        'https://arkaserve.com/careers', true],
             ['Contact',        '/contact'],
             ['Privacy Policy', '/privacy-policy'],
