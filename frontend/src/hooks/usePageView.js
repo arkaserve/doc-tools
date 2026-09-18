@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
-const API = import.meta.env.VITE_API_URL || 'http://3.236.24.123:8001'
+// Use relative /api/ path — Vercel rewrites it to EC2 (avoids mixed-content HTTPS→HTTP block)
+const API = ''
 
 // Records a visit and returns { count, total } for the given slug (e.g. "merge-pdf")
 export function usePageView(slug) {
