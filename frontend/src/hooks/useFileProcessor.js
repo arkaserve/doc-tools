@@ -31,9 +31,9 @@ export default function useFileProcessor() {
       }
 
       const url = URL.createObjectURL(blob)
-      setResult({ url, name })
+      setResult({ url, name, size: blob.size })
       toast.success('File processed successfully!')
-      return { url, name }
+      return { url, name, size: blob.size }
     } catch (err) {
       let msg = 'Processing failed. Please try again.'
       const status = err.response?.status
@@ -72,7 +72,7 @@ export default function useFileProcessor() {
   // For client-side operations: pass the result Blob directly
   const processClient = (blob, filename) => {
     const url = URL.createObjectURL(blob)
-    setResult({ url, name: filename })
+    setResult({ url, name: filename, size: blob.size })
     toast.success('Done! Processed in your browser.')
   }
 

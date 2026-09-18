@@ -56,9 +56,25 @@ export default function SplitPdf() {
           </label>
           {files.length > 0 && <EngineTag client={useClient} threshold={CLIENT_THRESHOLD_MB} />}
         </div>
+        {/* Quick presets */}
+        <div className="flex flex-wrap gap-2 mb-2">
+          {[
+            { label: 'All pages', value: '' },
+            { label: 'First page', value: '1' },
+            { label: 'Last page', value: 'last' },
+            { label: 'Pages 1–5', value: '1-5' },
+            { label: 'Odd pages', value: '1,3,5,7,9' },
+            { label: 'Even pages', value: '2,4,6,8,10' },
+          ].map(({ label, value }) => (
+            <button key={label} onClick={() => setPages(value)} type="button"
+              className={`px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${pages === value ? 'bg-red-500 text-white border-red-500' : 'bg-white text-gray-600 border-gray-200 hover:border-red-300'}`}>
+              {label}
+            </button>
+          ))}
+        </div>
         <input
           type="text" value={pages} onChange={e => setPages(e.target.value)}
-          placeholder="e.g. 1-3, 5, 7-9 — blank = split every page"
+          placeholder="e.g. 1-3, 5, 7-9 — leave blank to split every page"
           className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
         />
         <p className="text-xs text-gray-400 mt-1">Separate ranges with commas. Output is a ZIP with each part.</p>
