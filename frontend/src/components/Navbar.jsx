@@ -45,6 +45,12 @@ const WORD_ITEMS = [
   { label: 'PDF to Word',   path: '/pdf-to-word' },
 ]
 
+// Mobile-only: Word items without PDF duplicates
+const WORD_ITEMS_MOBILE = [
+  { label: 'Word Compare', path: '/word-compare' },
+  { label: 'Word Count',   path: '/word-count' },
+]
+
 const DEV_COLS = [
   {
     heading: 'JSON & Markup',
@@ -182,6 +188,64 @@ function NavDrop({ label, children }) {
   )
 }
 
+/* ── Mobile drawer with collapsible sections ── */
+const MOBILE_SECTIONS = [
+  { section: 'PDF Tools',       items: [...PDF_COLS[0].items, ...PDF_COLS[1].items] },
+  { section: 'Word Tools',      items: WORD_ITEMS_MOBILE },
+  { section: 'Dev Tools',       items: [...DEV_COLS[0].items, ...DEV_COLS[1].items] },
+  { section: 'Media & Graphics',items: MEDIA_ITEMS },
+  { section: 'Utilities & AI',  items: UTIL_ITEMS },
+]
+
+function MobileDrawer({ onClose, location }) {
+  const [openSection, setOpenSection] = useState('PDF Tools')
+  const toggle = (s) => setOpenSection(o => o === s ? null : s)
+  return (
+    <div id="mobile-nav-drawer" role="navigation" aria-label="Mobile navigation"
+      style={{ background:'#1e1b4b', borderTop:'1px solid rgba(99,102,241,0.25)', padding:'8px 16px 16px', maxHeight:'80vh', overflowY:'auto' }}>
+
+      {/* Quick links */}
+      <div style={{ display:'flex', gap:'8px', margin:'8px 0 10px', flexWrap:'wrap' }}>
+        {[{l:'Home',p:'/'},{l:'About',p:'/about'},{l:'Contact',p:'/contact'}].map(n => (
+          <Link key={n.p} to={n.p} onClick={onClose} replace={INFO_PAGES.includes(location.pathname)}
+            style={{ fontSize:'12px', fontWeight:600, color:'#c7d2fe', background:'rgba(255,255,255,0.08)', borderRadius:'6px', padding:'5px 12px', textDecoration:'none' }}>
+            {n.l}
+          </Link>
+        ))}
+      </div>
+
+      {/* Collapsible sections */}
+      {MOBILE_SECTIONS.map(g => (
+        <div key={g.section} style={{ borderBottom:'1px solid rgba(99,102,241,0.18)' }}>
+          <button onClick={() => toggle(g.section)}
+            style={{ width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center', background:'none', border:'none', cursor:'pointer', padding:'10px 4px', color:'rgba(199,210,254,0.85)', fontSize:'13px', fontWeight:700, letterSpacing:'0.04em' }}>
+            <span>{g.section}</span>
+            <ChevronDown size={14} style={{ transform: openSection === g.section ? 'rotate(180deg)' : 'none', transition:'transform 0.18s', color:'rgba(199,210,254,0.5)' }} />
+          </button>
+          {openSection === g.section && (
+            <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'2px 8px', paddingBottom:'10px' }}>
+              {g.items.map(i => (
+                <Link key={i.path} to={i.path} onClick={onClose} replace={INFO_PAGES.includes(location.pathname)}
+                  style={{ display:'block', padding:'6px 8px', borderRadius:'6px', color:'rgba(199,210,254,0.7)', textDecoration:'none', fontSize:'12.5px' }}
+                  onMouseEnter={e => e.currentTarget.style.color='#fff'}
+                  onMouseLeave={e => e.currentTarget.style.color='rgba(199,210,254,0.7)'}>
+                  {i.label}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+
+      {/* Auth buttons */}
+      <div style={{ display:'flex', gap:'10px', marginTop:'14px' }}>
+        <Link to="/signin" onClick={onClose} style={{ flex:1, textAlign:'center', padding:'10px', borderRadius:'8px', border:'1px solid rgba(199,210,254,0.3)', color:'#c7d2fe', textDecoration:'none', fontSize:'13px', fontWeight:600 }}>Login</Link>
+        <Link to="/signup" onClick={onClose} style={{ flex:1, textAlign:'center', padding:'10px', borderRadius:'8px', background:'linear-gradient(135deg,#fb7185,#f43f5e)', color:'#fff', textDecoration:'none', fontSize:'13px', fontWeight:700 }}>Sign Up</Link>
+      </div>
+    </div>
+  )
+}
+
 export default function Navbar({ dark, setDark }) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
@@ -276,30 +340,7 @@ export default function Navbar({ dark, setDark }) {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div id="mobile-nav-drawer" role="navigation" aria-label="Mobile navigation" style={{ background:'#1e1b4b', borderTop:'1px solid rgba(99,102,241,0.25)', padding:'12px 20px 20px', maxHeight:'80vh', overflowY:'auto' }}>
-          {[
-            { section:'PDF Tools', items:[...PDF_COLS[0].items, ...PDF_COLS[1].items] },
-            { section:'Word Tools', items: WORD_ITEMS },
-            { section:'Dev Tools', items:[...DEV_COLS[0].items,...DEV_COLS[1].items] },
-            { section:'Media & Graphics', items: MEDIA_ITEMS },
-            { section:'Utilities & AI', items: UTIL_ITEMS },
-          ].map(g => (
-            <div key={g.section}>
-              <p style={{ fontSize:'10px', fontWeight:700, color:'rgba(199,210,254,0.45)', textTransform:'uppercase', letterSpacing:'0.1em', margin:'14px 0 5px 4px' }}>{g.section}</p>
-              {g.items.map(i => (
-                <Link key={i.path} to={i.path} onClick={() => setMobileOpen(false)}
-                  replace={INFO_PAGES.includes(location.pathname)}
-                  style={{ display:'block', padding:'7px 8px', borderRadius:'7px', color:NAV_TEXT, textDecoration:'none', fontSize:'13px' }}>
-                  {i.label}
-                </Link>
-              ))}
-            </div>
-          ))}
-          <div style={{ display:'flex', gap:'10px', marginTop:'16px', borderTop:'1px solid rgba(99,102,241,0.2)', paddingTop:'14px' }}>
-            <Link to="/signin" onClick={() => setMobileOpen(false)} style={{ flex:1, textAlign:'center', padding:'10px', borderRadius:'8px', border:'1px solid rgba(199,210,254,0.3)', color:'#c7d2fe', textDecoration:'none', fontSize:'13px', fontWeight:600 }}>Login</Link>
-            <Link to="/signup" onClick={() => setMobileOpen(false)} style={{ flex:1, textAlign:'center', padding:'10px', borderRadius:'8px', background:'linear-gradient(135deg,#fb7185,#f43f5e)', color:'#fff', textDecoration:'none', fontSize:'13px', fontWeight:700 }}>Sign Up</Link>
-          </div>
-        </div>
+        <MobileDrawer onClose={() => setMobileOpen(false)} location={location} />
       )}
     </nav>
   )
