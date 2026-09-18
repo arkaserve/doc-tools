@@ -11,8 +11,8 @@ const FLAGS = [
 ]
 
 const EXAMPLES = [
-  { label: 'Email', pattern: '[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}', flags: 'g', text: 'Contact us at hello@doccraft.io or support@example.com for help.' },
-  { label: 'URL', pattern: 'https?:\\/\\/[^\\s]+', flags: 'g', text: 'Visit https://doccraft.io or http://example.com/path?q=1' },
+  { label: 'Email', pattern: '[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}', flags: 'g', text: 'Contact us at hello@arkaserve.com or support@example.com for help.' },
+  { label: 'URL', pattern: 'https?:\\/\\/[^\\s]+', flags: 'g', text: 'Visit https://tools.arkaserve.com or http://example.com/path?q=1' },
   { label: 'Date', pattern: '\\d{4}-\\d{2}-\\d{2}', flags: 'g', text: 'Meeting on 2024-01-15 and follow-up on 2024-02-20.' },
   { label: 'IPv4', pattern: '\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b', flags: 'g', text: 'Server IPs: 192.168.1.1 and 10.0.0.255' },
   { label: 'Hex Color', pattern: '#[0-9a-fA-F]{3,6}', flags: 'g', text: 'Colors: #fff, #FF5733, #3498db, #aabbcc' },
@@ -35,7 +35,7 @@ function highlight(text, matches) {
 export default function RegexTester() {
   const [pattern, setPattern] = useState('[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}')
   const [activeFlags, setActiveFlags] = useState(new Set(['g', 'i']))
-  const [testText, setTestText] = useState('Contact us at hello@doccraft.io or support@example.com for help.')
+  const [testText, setTestText] = useState('Contact us at hello@arkaserve.com or support@example.com for help.')
   const [copied, setCopied] = useState(false)
 
   const toggleFlag = (f) => setActiveFlags(prev => {

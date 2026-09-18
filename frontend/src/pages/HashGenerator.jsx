@@ -16,7 +16,7 @@ const ALGOS = [
 const HMAC_ALGOS = ['MD5', 'SHA-1', 'SHA-256', 'SHA-512']
 
 export default function HashGenerator() {
-  const [input, setInput] = useState('Hello, DocCraft!')
+  const [input, setInput] = useState('Hello, Arkaserve!')
   const [upper, setUpper] = useState(false)
   const [mode, setMode] = useState('text') // 'text' | 'hmac'
   const [hmacKey, setHmacKey] = useState('')

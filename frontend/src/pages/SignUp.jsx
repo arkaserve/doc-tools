@@ -24,11 +24,11 @@ export default function SignUp() {
             <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow" style={{ background: 'linear-gradient(135deg,#fb7185,#f43f5e)' }}>
               <FileText size={20} className="text-white" />
             </div>
-            <span className="text-2xl font-extrabold" style={{ color: '#1e1b4b' }}>DocCraft</span>
+            <span className="text-2xl font-extrabold" style={{ color: '#1e1b4b' }}>Arkaserve Tools</span>
           </div>
 
           <h2 className="text-xl font-bold text-center mb-1 text-gray-900 dark:text-white">Create your account</h2>
-          <p className="text-sm text-center text-gray-500 mb-6">Join DocCraft — it's free forever</p>
+          <p className="text-sm text-center text-gray-500 mb-6">Join Arkaserve Tools — it's free forever</p>
 
           <form onSubmit={submit} className="space-y-4">
             <div>

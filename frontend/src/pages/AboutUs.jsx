@@ -11,13 +11,13 @@ const VALUES = [
   { icon: Zap,        bg: '#fffbeb', iconColor: '#d97706', title: 'Instant, No Friction', desc: 'No sign-up walls, no captchas, no timers. Open the tool, paste your content, get your result.' },
   { icon: DollarSign, bg: '#faf5ff', iconColor: '#7c3aed', title: 'Honest Pricing',      desc: 'A handful of tools that use real cloud compute carry a small charge. We tell you upfront which ones and why. No surprises.' },
   { icon: Code2,      bg: '#eff6ff', iconColor: '#2563eb', title: 'Built by a Developer', desc: 'Every UX decision was made with the engineer and student in mind. If it\'s annoying, we fix it.' },
-  { icon: Globe,      bg: '#f0f9ff', iconColor: '#0284c7', title: 'For Everyone',         desc: 'A student debugging lab code, a developer formatting JSON, a professional converting a report — DocCraft is for all of you.' },
+  { icon: Globe,      bg: '#f0f9ff', iconColor: '#0284c7', title: 'For Everyone',         desc: 'A student debugging lab code, a developer formatting JSON, a professional converting a report — Arkaserve Tools is for all of you.' },
 ]
 
 
 const TEAM = [
-  { emoji: '👨‍💻', name: 'AK Mikkili', role: 'Founder & CEO',  bg: 'linear-gradient(135deg,#fb7185,#f43f5e)', desc: 'IT Lead Engineer · NIT Durgapur alum. Built DocCraft after getting frustrated one too many times with paywall-gated tools at 11 PM. Every design decision on this platform started from his own frustration as a developer.' },
-  { emoji: '👩‍💼', name: 'Padma',       role: 'Co-Founder',      bg: 'linear-gradient(135deg,#818cf8,#6366f1)', desc: 'Shapes DocCraft\'s product vision and business strategy. Makes sure what we build actually solves real problems for real people, not just what\'s easy to build.' },
+  { emoji: '👨‍💻', name: 'AK Mikkili', role: 'Founder & CEO',  bg: 'linear-gradient(135deg,#fb7185,#f43f5e)', desc: 'IT Lead Engineer · NIT Durgapur alum. Built Arkaserve Tools after getting frustrated one too many times with paywall-gated tools at 11 PM. Every design decision on this platform started from his own frustration as a developer.' },
+  { emoji: '👩‍💼', name: 'Padma',       role: 'Co-Founder',      bg: 'linear-gradient(135deg,#818cf8,#6366f1)', desc: 'Shapes Arkaserve Tools\' product vision and business strategy. Makes sure what we build actually solves real problems for real people, not just what\'s easy to build.' },
   { emoji: '👨‍🔧', name: 'Ramesh',      role: 'Lead Engineer',   bg: 'linear-gradient(135deg,#34d399,#059669)', desc: 'Leads backend infrastructure and keeps the engines running. Ensures every tool is fast, reliable, and handles edge cases gracefully under real-world load.' },
 ]
 
@@ -43,7 +43,7 @@ export default function AboutUs() {
             You're in the middle of a task — merging a PDF, formatting JSON, converting an image — and you hit a wall. A login gate. A "you've used your 2 free conversions" message. An ad you have to sit through. Every time, without exception.
           </p>
           <p style={{ fontSize: '16px', color: 'rgba(199,210,254,0.85)', lineHeight: 1.85, margin: 0, maxWidth: '700px' }}>
-            The truth is, most of these tools run entirely in your browser — on your device. The provider bears zero server cost. The paywall isn't a necessity — it's a choice. <strong style={{ color: ACCENT, fontWeight: 700 }}>DocCraft makes a different choice: if it runs in your browser, it's free. Period.</strong>
+            The truth is, most of these tools run entirely in your browser — on your device. The provider bears zero server cost. The paywall isn't a necessity — it's a choice. <strong style={{ color: ACCENT, fontWeight: 700 }}>Arkaserve Tools makes a different choice: if it runs in your browser, it's free. Period.</strong>
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function AboutUs() {
       {/* ── What's free / what's not ── */}
       <div style={{ background: '#fff', border: '1px solid #e0e7ff', borderRadius: '20px', padding: '32px', marginBottom: '28px', boxShadow: '0 2px 16px rgba(99,102,241,0.06)' }}>
         <h2 style={{ fontSize: '1.2rem', fontWeight: 800, color: DARK, margin: '0 0 8px' }}>Our Promise: Honest About What's Free</h2>
-        <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '20px', lineHeight: 1.7 }}>We're transparent. Here's exactly how DocCraft works:</p>
+        <p style={{ fontSize: '14px', color: '#64748b', marginBottom: '20px', lineHeight: 1.7 }}>We're transparent. Here's exactly how Arkaserve Tools works:</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '14px', padding: '20px' }}>
             <p style={{ fontWeight: 800, color: '#15803d', marginBottom: '10px', fontSize: '14px' }}>✅ Always Free</p>

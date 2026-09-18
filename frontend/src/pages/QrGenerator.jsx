@@ -13,7 +13,7 @@ const ERROR_LEVELS = [
 ]
 
 export default function QrGenerator() {
-  const [text, setText] = useState('https://doccraft.io')
+  const [text, setText] = useState('https://tools.arkaserve.com')
   const [size, setSize] = useState(256)
   const [errorLevel, setErrorLevel] = useState('M')
   const [fgColor, setFgColor] = useState('#000000')

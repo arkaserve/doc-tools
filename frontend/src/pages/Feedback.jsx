@@ -27,7 +27,7 @@ export default function Feedback() {
 
       <div className="text-center mb-8">
         <h1 className="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-3">Share Your Feedback</h1>
-        <p className="text-gray-500 dark:text-gray-400 max-w-sm mx-auto">Your feedback helps us improve DocCraft for everyone.</p>
+        <p className="text-gray-500 dark:text-gray-400 max-w-sm mx-auto">Your feedback helps us improve Arkaserve Tools for everyone.</p>
       </div>
 
       <form onSubmit={submit} className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm p-7 space-y-5">

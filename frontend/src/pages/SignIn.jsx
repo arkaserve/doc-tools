@@ -26,7 +26,7 @@ export default function SignIn() {
             <div className="w-10 h-10 bg-red-500 rounded-xl flex items-center justify-center shadow">
               <FileText size={20} className="text-white" />
             </div>
-            <span className="text-2xl font-extrabold text-red-500">DocCraft</span>
+            <span className="text-2xl font-extrabold text-red-500">Arkaserve Tools</span>
           </div>
 
           {/* Tab toggle */}
