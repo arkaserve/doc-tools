@@ -54,10 +54,11 @@ export default function Footer() {
 
           {/* Company */}
           <FooterCol replace={shouldReplace} title="Company" links={[
-            ['Home',    '/'],
-            ['About',   'https://arkaserve.com/#about',  true],
-            ['Careers', 'https://arkaserve.com/careers', true],
-            ['Contact', '/contact'],
+            ['Home',           '/'],
+            ['About',          'https://arkaserve.com/#about',  true],
+            ['Careers',        'https://arkaserve.com/careers', true],
+            ['Contact',        '/contact'],
+            ['Privacy Policy', '/privacy-policy'],
           ]} extra={[
             ['Blog', null],
           ]} />
@@ -65,7 +66,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div style={{ borderTop: '1px solid rgba(99,102,241,0.25)', padding: '20px 0' }} />
+        <div style={{ borderTop: '1px solid rgba(99,102,241,0.25)', padding: '16px 0', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
+          <p style={{ margin: 0, fontSize: '12px', color: 'rgba(199,210,254,0.45)' }}>© {new Date().getFullYear()} DocCraft by Arkaserve. All rights reserved.</p>
+          <div style={{ display: 'flex', gap: '16px' }}>
+            <Link to="/privacy-policy" style={{ fontSize: '12px', color: 'rgba(199,210,254,0.5)', textDecoration: 'none' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(199,210,254,0.5)'}>Privacy Policy</Link>
+            <Link to="/contact" style={{ fontSize: '12px', color: 'rgba(199,210,254,0.5)', textDecoration: 'none' }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(199,210,254,0.5)'}>Contact</Link>
+          </div>
+        </div>
       </div>
     </footer>
   )

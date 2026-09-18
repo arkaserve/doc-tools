@@ -71,6 +71,7 @@ const Feedback         = lazy(() => import('./pages/Feedback'))
 const SignIn           = lazy(() => import('./pages/SignIn'))
 const SignUp           = lazy(() => import('./pages/SignUp'))
 const Subscription     = lazy(() => import('./pages/Subscription'))
+const PrivacyPolicy    = lazy(() => import('./pages/PrivacyPolicy'))
 const NotFound         = lazy(() => import('./pages/NotFound'))
 
 function PageLoader() {
@@ -198,6 +199,7 @@ export default function App() {
             <Route path="/signin"          element={<SignIn />} />
             <Route path="/signup"          element={<SignUp />} />
             <Route path="/subscription"    element={<Subscription />} />
+            <Route path="/privacy-policy"  element={<PrivacyPolicy />} />
             <Route path="*"               element={<NotFound />} />
           </Routes>
         </Suspense>

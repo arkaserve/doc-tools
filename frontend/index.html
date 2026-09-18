@@ -147,27 +147,9 @@
     }
     </script>
 
-    <!-- ── Resource hints — load API server connection early ── -->
-    <link rel="preconnect" href="http://3.236.24.123:8001" crossorigin />
-    <link rel="dns-prefetch" href="http://3.236.24.123" />
-
-    <!-- ── Fonts: preconnect first, then load async (non-blocking) ── -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- font-display=optional: browser uses system font if webfont isn't cached yet (zero CLS, zero render block) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" />
-    </noscript>
-
-    <!-- ── Critical inline CSS: fast system font default, zero layout shift ── -->
+    <!-- ── Critical inline CSS: system font stack — zero network cost, zero CLS, zero render block ── -->
     <style>
-      :root { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+      :root { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
       body { margin: 0; background: #f9fafb; }
     </style>
   </head>

@@ -174,8 +174,8 @@ function NavDrop({ label, children }) {
   }, [])
   return (
     <div ref={ref} style={{ position:'relative' }} onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
-      <button onClick={() => setOpen(o => !o)} style={{ display:'flex', alignItems:'center', gap:'4px', fontSize:'15px', fontWeight:600, letterSpacing:'0.02em', color: open ? ACCENT : NAV_TEXT, background: open ? 'rgba(251,113,133,0.15)' : 'transparent', border:'none', borderRadius:'7px', padding:'7px 10px', cursor:'pointer', whiteSpace:'nowrap', transition:'all 0.15s' }}>
-        {label} <ChevronDown size={12} style={{ transform: open ? 'rotate(180deg)' : 'none', transition:'transform 0.18s' }} />
+      <button onClick={() => setOpen(o => !o)} aria-expanded={open} aria-haspopup="true" aria-label={`${label} menu`} style={{ display:'flex', alignItems:'center', gap:'4px', fontSize:'15px', fontWeight:600, letterSpacing:'0.02em', color: open ? ACCENT : NAV_TEXT, background: open ? 'rgba(251,113,133,0.15)' : 'transparent', border:'none', borderRadius:'7px', padding:'7px 10px', cursor:'pointer', whiteSpace:'nowrap', transition:'all 0.15s' }}>
+        {label} <ChevronDown size={12} aria-hidden="true" style={{ transform: open ? 'rotate(180deg)' : 'none', transition:'transform 0.18s' }} />
       </button>
       {open && children(() => setOpen(false))}
     </div>
@@ -187,7 +187,7 @@ export default function Navbar({ dark, setDark }) {
   const location = useLocation()
 
   return (
-    <nav style={{ background: NAV_BG, borderBottom:'1px solid rgba(99,102,241,0.25)', position:'sticky', top:0, zIndex:50, boxShadow:'0 2px 20px rgba(0,0,0,0.25)' }}>
+    <nav aria-label="Main navigation" style={{ background: NAV_BG, borderBottom:'1px solid rgba(99,102,241,0.25)', position:'sticky', top:0, zIndex:50, boxShadow:'0 2px 20px rgba(0,0,0,0.25)' }}>
       <div style={{ padding:'0 14px', display:'flex', alignItems:'center', height:'60px', gap:'2px' }}>
 
         {/* Logo — extreme left */}
@@ -267,18 +267,18 @@ export default function Navbar({ dark, setDark }) {
 
         {/* Mobile hamburger */}
         <div className="xl:hidden flex items-center gap-2 ml-auto">
-          <button onClick={() => setDark(d => !d)} style={{ padding:'7px', borderRadius:'8px', background:'rgba(255,255,255,0.1)', border:'none', cursor:'pointer', color:'#c7d2fe', lineHeight:0 }}>
-            {dark ? <Sun size={16} color="#fbbf24" /> : <Moon size={16} />}
+          <button onClick={() => setDark(d => !d)} aria-label="Toggle dark mode" style={{ padding:'7px', borderRadius:'8px', background:'rgba(255,255,255,0.1)', border:'none', cursor:'pointer', color:'#c7d2fe', lineHeight:0 }}>
+            {dark ? <Sun size={16} color="#fbbf24" aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
           </button>
-          <button onClick={() => setMobileOpen(o => !o)} style={{ padding:'7px', borderRadius:'8px', background:'transparent', border:'none', cursor:'pointer', color:'#c7d2fe', lineHeight:0 }}>
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          <button onClick={() => setMobileOpen(o => !o)} aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'} aria-expanded={mobileOpen} aria-controls="mobile-nav-drawer" style={{ padding:'7px', borderRadius:'8px', background:'transparent', border:'none', cursor:'pointer', color:'#c7d2fe', lineHeight:0 }}>
+            {mobileOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div style={{ background:'#1e1b4b', borderTop:'1px solid rgba(99,102,241,0.25)', padding:'12px 20px 20px', maxHeight:'80vh', overflowY:'auto' }}>
+        <div id="mobile-nav-drawer" role="navigation" aria-label="Mobile navigation" style={{ background:'#1e1b4b', borderTop:'1px solid rgba(99,102,241,0.25)', padding:'12px 20px 20px', maxHeight:'80vh', overflowY:'auto' }}>
           {[
             { section:'PDF Tools', items:[...PDF_COLS[0].items, ...PDF_COLS[1].items] },
             { section:'Word Tools', items: WORD_ITEMS },
