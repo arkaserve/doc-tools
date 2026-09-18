@@ -54,10 +54,11 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
       <div className="px-6 py-4" style={{ background: '#f0fdf4', borderBottom: '1px solid #d1fae5' }}>
         <button
           onClick={onDownload}
+          aria-label={`Download ${result?.name || 'processed file'}`}
           className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.01] active:scale-100"
           style={{ background: 'linear-gradient(135deg, #059669, #047857)', boxShadow: '0 4px 14px rgba(5,150,105,0.35)' }}
         >
-          <Download size={17} strokeWidth={2.5} />
+          <Download size={17} strokeWidth={2.5} aria-hidden="true" />
           Download File
         </button>
 
@@ -185,9 +186,15 @@ export default function ToolPageLayout({ icon, title, description, children, onP
         {children}
 
         {onProcess && !result && (
-          <button onClick={onProcess} disabled={processing} className="btn-primary w-full flex items-center justify-center gap-2">
+          <button
+            onClick={onProcess}
+            disabled={processing}
+            aria-label={processing ? 'Processing your file, please wait' : `Process with ${title}`}
+            aria-busy={processing}
+            className="btn-primary w-full flex items-center justify-center gap-2"
+          >
             {processing ? (
-              <><Loader2 size={18} className="animate-spin" /> Processing...</>
+              <><Loader2 size={18} className="animate-spin" aria-hidden="true" /> Processing...</>
             ) : (
               'Process'
             )}
@@ -235,11 +242,12 @@ export default function ToolPageLayout({ icon, title, description, children, onP
           <div className="space-y-2">
             {faqs.map((faq, i) => (
               <details key={i} className="group rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                <summary className="flex items-center justify-between gap-2 px-4 py-3 cursor-pointer text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 select-none list-none">
+                <summary className="flex items-center justify-between gap-2 px-4 py-3 cursor-pointer text-sm font-semibold text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 select-none list-none" aria-label={faq.q}>
                   <span>{faq.q}</span>
                   <svg
                     className="w-4 h-4 text-gray-400 flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    aria-hidden="true"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>

@@ -19,13 +19,28 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       sourcemap: false,
-      chunkSizeWarningLimit: 1000,
+      // Minify with esbuild (default, fastest)
+      minify: 'esbuild',
+      // Raise warning limit; pages are lazy so per-chunk size is fine
+      chunkSizeWarningLimit: 600,
       rollupOptions: {
         output: {
-          manualChunks: {
-            react: ['react', 'react-dom'],
-            router: ['react-router-dom'],
-          }
+          // Each lazy page becomes its own chunk automatically via dynamic import.
+          // We only need to split the heavy shared vendor libraries.
+          manualChunks(id) {
+            if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) {
+              return 'react-core'
+            }
+            if (id.includes('node_modules/react-router-dom') || id.includes('node_modules/react-router/') || id.includes('node_modules/@remix-run')) {
+              return 'router'
+            }
+            if (id.includes('node_modules/lucide-react')) {
+              return 'icons'
+            }
+            if (id.includes('node_modules/react-hot-toast')) {
+              return 'toast'
+            }
+          },
         }
       }
     }
