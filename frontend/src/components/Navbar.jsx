@@ -195,7 +195,7 @@ export default function Navbar({ dark, setDark }) {
           <div style={{ width:'30px', height:'30px', background:'linear-gradient(135deg,#fb7185,#f43f5e)', borderRadius:'8px', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
             <FileText size={16} color="#fff" />
           </div>
-          DocCraft
+          Arkaserve Tools
         </Link>
 
         {/* Desktop category nav — centered */}

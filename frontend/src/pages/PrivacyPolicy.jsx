@@ -1,4 +1,4 @@
-export default function PrivacyPolicy() {
+﻿export default function PrivacyPolicy() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Privacy Policy</h1>
@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">1. Introduction</h2>
-          <p>DocCraft ("we", "our", or "us"), operated by Arkaserve (<a href="https://arkaserve.com" className="text-red-600 hover:underline">arkaserve.com</a>), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our free online tools at <a href="https://tools.arkaserve.com" className="text-red-600 hover:underline">tools.arkaserve.com</a>.</p>
+          <p>Arkaserve Tools ("we", "our", or "us"), operated by Arkaserve (<a href="https://arkaserve.com" className="text-red-600 hover:underline">arkaserve.com</a>), is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our free online tools at <a href="https://tools.arkaserve.com" className="text-red-600 hover:underline">tools.arkaserve.com</a>.</p>
         </section>
 
         <section>
@@ -35,8 +35,8 @@ export default function PrivacyPolicy() {
           <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">4. Third-Party Services</h2>
           <p>We use the following third-party services that may collect data independently:</p>
           <ul className="list-disc pl-5 space-y-1 mt-2">
-            <li><strong>Google Analytics</strong> — website traffic analysis (<a href="https://policies.google.com/privacy" className="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a>)</li>
-            <li><strong>Google AdSense</strong> — display advertising (<a href="https://policies.google.com/technologies/ads" className="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">Google Ad Policy</a>)</li>
+            <li><strong>Google Analytics</strong> - website traffic analysis (<a href=”https://policies.google.com/privacy” className=”text-red-600 hover:underline” target=”_blank” rel=”noopener noreferrer”>Google Privacy Policy</a>)</li>
+            <li><strong>Google AdSense</strong> - display advertising (<a href=”https://policies.google.com/technologies/ads” className=”text-red-600 hover:underline” target=”_blank” rel=”noopener noreferrer”>Google Ad Policy</a>)</li>
           </ul>
           <p className="mt-2">These services operate under their own privacy policies. We do not control the data they collect.</p>
         </section>

@@ -1,7 +1,7 @@
 {
-  "name": "DocCraft - Document Tools",
-  "short_name": "DocCraft",
-  "description": "Free online tools for PDF, Word, Excel, JSON and more. Convert, merge, split, compress documents instantly.",
+  "name": "Arkaserve Tools",
+  "short_name": "Arkaserve",
+  "description": "Free online tools for PDF, Word, Excel, JSON and more. Convert, merge, split, compress documents instantly. No signup, no watermark.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

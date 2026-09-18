@@ -36,6 +36,7 @@ const RELATED_TOOLS = {
   '/word-compare':   [{ path:'/word-count', label:'Word Count' },{ path:'/code-diff', label:'Code Diff' },{ path:'/markdown-preview', label:'Markdown Preview' },{ path:'/json-beautifier', label:'JSON Beautifier' }],
 }
 
+const SITE_NAME = 'Arkaserve Tools'
 const SITE_URL = 'https://tools.arkaserve.com'
 
 const TRUST_BADGES = [
@@ -70,7 +71,7 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
     })
   }
 
-  const shareText = encodeURIComponent(`I just used ${title} for FREE on DocCraft — ${SITE_URL}`)
+  const shareText = encodeURIComponent(`I just used ${title} for FREE on ${SITE_NAME} — ${SITE_URL}`)
   const shareUrl  = encodeURIComponent(SITE_URL)
 
   return (
@@ -110,7 +111,7 @@ function SuccessBanner({ result, onDownload, onReset, title }) {
       <div className="px-6 py-4" style={{ background: '#fff' }}>
         <div className="flex items-center gap-2 mb-3">
           <Share2 size={14} className="text-gray-400" />
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Love DocCraft? Spread the word!</p>
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Love Arkaserve Tools? Spread the word!</p>
         </div>
         <p className="text-xs text-gray-400 mb-3">Help others discover free tools — share with a friend or on social media.</p>
         <div className="flex flex-wrap gap-2">

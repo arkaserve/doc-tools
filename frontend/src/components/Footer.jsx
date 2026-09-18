@@ -18,10 +18,10 @@ export default function Footer() {
               <div style={{ width: '30px', height: '30px', background: 'linear-gradient(135deg,#fb7185,#f43f5e)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <FileText size={16} color="#fff" />
               </div>
-              DocCraft
+              Arkaserve Tools
             </Link>
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(199,210,254,0.6)', margin: 0 }}>
-              All document &amp; developer tools in one place. Free, fast, and private.
+              60+ free tools — PDF, documents, images, and code. No signup, no watermark.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{ borderTop: '1px solid rgba(99,102,241,0.25)', padding: '16px 0', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
-          <p style={{ margin: 0, fontSize: '12px', color: 'rgba(199,210,254,0.45)' }}>© {new Date().getFullYear()} DocCraft by Arkaserve. All rights reserved.</p>
+          <p style={{ margin: 0, fontSize: '12px', color: 'rgba(199,210,254,0.45)' }}>© {new Date().getFullYear()} Arkaserve. All rights reserved.</p>
           <div style={{ display: 'flex', gap: '16px' }}>
             <Link to="/privacy-policy" style={{ fontSize: '12px', color: 'rgba(199,210,254,0.5)', textDecoration: 'none' }}
               onMouseEnter={e => e.currentTarget.style.color = '#fff'}
