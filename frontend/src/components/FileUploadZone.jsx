@@ -2,11 +2,17 @@ import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Upload, File, X } from 'lucide-react'
 import toast from 'react-hot-toast'
+import CloudFilePicker from './CloudFilePicker'
 
 const MAX_MB = 25
 const MAX_BYTES = MAX_MB * 1024 * 1024
 
 export default function FileUploadZone({ accept, multiple = false, files, onFiles, onRemove, label, hint }) {
+  const addFile = useCallback((file) => {
+    if (multiple) onFiles(prev => [...prev, file])
+    else onFiles([file])
+  }, [multiple, onFiles])
+
   const onDrop = useCallback(accepted => {
     const oversized = accepted.filter(f => f.size > MAX_BYTES)
     const valid     = accepted.filter(f => f.size <= MAX_BYTES)
@@ -34,6 +40,8 @@ export default function FileUploadZone({ accept, multiple = false, files, onFile
           Select {multiple ? 'Files' : 'File'}
         </button>
       </div>
+
+      <CloudFilePicker accept={accept} onFile={addFile} multiple={multiple} />
 
       {files && files.length > 0 && (
         <div className="space-y-2">
