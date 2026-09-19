@@ -217,6 +217,24 @@ export const PAGE_META = {
       { q: 'Can I convert a full webpage URL to PDF?', a: 'This tool is for pasting HTML code directly. For URL-based webpage capture, consider using your browser\'s built-in Print -> Save as PDF feature.' },
     ],
   },
+  '/pdf-editor': {
+    title: 'PDF Editor Online Free – Edit PDF Files | Arkaserve Tools',
+    desc: 'Edit PDF files online for free — add text, highlight areas, draw, annotate, and whiteout content. No signup, no upload. Works entirely in your browser.',
+    keywords: 'PDF editor online free, edit PDF online, add text to PDF free, highlight PDF, annotate PDF, draw on PDF, whiteout PDF, PDF annotation tool',
+    steps: [
+      'Upload your PDF by clicking the button or dragging it onto the editor.',
+      'Select a tool from the toolbar — Text, Highlight, Whiteout, or Draw.',
+      'Click or drag on the PDF page to add your annotation.',
+      'Navigate between pages using the page controls.',
+      'Click "Download PDF" to save your edited file.',
+    ],
+    faqs: [
+      { q: 'Can I add text to a PDF for free?', a: 'Yes. Use the Text tool in the PDF Editor — click anywhere on the page, type your text, and download the edited PDF. It is completely free with no signup.' },
+      { q: 'Does my PDF get uploaded to a server?', a: 'No. All editing happens entirely inside your browser using JavaScript. Your file never leaves your device.' },
+      { q: 'Can I highlight text in a PDF?', a: 'Yes. Select the Highlight tool and drag over any area of the PDF page to add a yellow highlight. You can delete it anytime before downloading.' },
+      { q: 'How do I cover or redact content in a PDF?', a: 'Use the Whiteout tool. Drag over the area you want to cover — it draws a white rectangle over that part of the page. Then download the PDF.' },
+    ],
+  },
   '/pdf-to-pptx': {
     title: 'PDF to PowerPoint Converter Free -- PDF to PPTX Online | Arkaserve Tools',
     desc: 'Convert PDF slides to editable PowerPoint (.pptx) presentations online for free. Each PDF page becomes a separate slide. No signup, instant download.',

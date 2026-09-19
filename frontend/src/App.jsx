@@ -73,6 +73,7 @@ const SignUp           = lazy(() => import('./pages/SignUp'))
 const Subscription     = lazy(() => import('./pages/Subscription'))
 const PrivacyPolicy    = lazy(() => import('./pages/PrivacyPolicy'))
 const NotFound         = lazy(() => import('./pages/NotFound'))
+const PdfEditor        = lazy(() => import('./pages/PdfEditor'))
 
 function PageLoader() {
   return (
@@ -155,6 +156,7 @@ export default function App() {
             <Route path="/html-to-pdf"     element={<HtmlToPdf />} />
             <Route path="/pdf-to-pptx"     element={<PdfToPptx />} />
             <Route path="/pptx-to-pdf"     element={<PptxToPdf />} />
+            <Route path="/pdf-editor"      element={<PdfEditor />} />
             <Route path="/analyze-pdf"     element={<PdfAnalyzer />} />
             <Route path="/json-beautifier" element={<JsonBeautifier />} />
             <Route path="/json-validator"  element={<JsonValidator />} />
