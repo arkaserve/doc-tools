@@ -26,15 +26,25 @@ async function openGooglePicker(accept, onFile) {
     await loadScript('https://apis.google.com/js/api.js')
     await loadScript('https://accounts.google.com/gsi/client')
 
-    // Get OAuth token
-    const token = await new Promise((resolve, reject) => {
+    // Get OAuth token — resolve null on user cancel so we don't show an error
+    const token = await new Promise((resolve) => {
       const client = window.google.accounts.oauth2.initTokenClient({
         client_id: GOOGLE_CLIENT_ID,
         scope: 'https://www.googleapis.com/auth/drive.readonly',
-        callback: (resp) => resp.error ? reject(resp.error) : resolve(resp.access_token),
+        callback: (resp) => {
+          if (resp.error === 'access_denied' || resp.error === 'popup_closed_by_user' || resp.error === 'cancelled') {
+            resolve(null) // user cancelled — treat silently
+          } else if (resp.error) {
+            resolve(null)
+          } else {
+            resolve(resp.access_token)
+          }
+        },
+        error_callback: () => resolve(null),
       })
       client.requestAccessToken({ prompt: '' })
     })
+    if (!token) return // user cancelled — nothing to do
 
     // Build MIME type filter
     const mimeTypes = Object.values(accept).flat().map(ext => {
@@ -90,7 +100,10 @@ async function openGooglePicker(accept, onFile) {
       .build()
       .setVisible(true)
   } catch (e) {
-    toast.error('Google Drive sign-in failed. Please try again.')
+    // Only show error for non-cancel failures
+    if (!String(e).includes('access_denied') && !String(e).includes('popup_closed') && !String(e).includes('cancelled')) {
+      toast.error('Google Drive sign-in failed. Please try again.')
+    }
   }
 }
 
