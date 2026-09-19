@@ -291,7 +291,7 @@ const CLOUD_SOURCES = [
   },
 ]
 
-export default function CloudFilePicker({ accept, onFile, multiple = false }) {
+export default function CloudFilePicker({ accept, onFile, multiple = false, vertical = false }) {
   const [urlOpen, setUrlOpen] = useState(false)
   const [loading, setLoading] = useState(null)
 
@@ -306,6 +306,54 @@ export default function CloudFilePicker({ accept, onFile, multiple = false }) {
     } finally {
       setLoading(null)
     }
+  }
+
+  if (vertical) {
+    return (
+      <div style={{
+        display: 'flex', flexDirection: 'column', gap: '6px',
+        padding: '12px 10px',
+        background: '#f8f7ff',
+        border: '1.5px solid #e0e7ff',
+        borderRadius: '16px',
+        minWidth: '120px',
+        width: '130px',
+        alignItems: 'stretch',
+        flexShrink: 0,
+      }}>
+        <span style={{ fontSize: '10px', fontWeight: 700, color: '#94a3b8', textAlign: 'center', letterSpacing: '0.06em', marginBottom: '2px' }}>IMPORT FROM</span>
+        {CLOUD_SOURCES.map(s => (
+          <button
+            key={s.id}
+            onClick={() => handleSource(s.id)}
+            disabled={!!loading}
+            title={s.label}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '7px',
+              padding: '8px 10px',
+              background: urlOpen && s.id === 'url' ? s.bg : '#fff',
+              border: `1.5px solid ${urlOpen && s.id === 'url' ? s.color : '#e0e7ff'}`,
+              borderRadius: '10px',
+              fontSize: '12px', fontWeight: 600, color: '#374151',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              opacity: loading && loading !== s.id ? 0.5 : 1,
+              transition: 'all 0.15s',
+              width: '100%',
+            }}
+            onMouseEnter={e => { if (!loading) { e.currentTarget.style.borderColor = s.color; e.currentTarget.style.background = s.bg } }}
+            onMouseLeave={e => { if (!loading) { e.currentTarget.style.borderColor = urlOpen && s.id === 'url' ? s.color : '#e0e7ff'; e.currentTarget.style.background = urlOpen && s.id === 'url' ? s.bg : '#fff' } }}
+          >
+            {loading === s.id
+              ? <Loader2 size={13} style={{ animation: 'spin 1s linear infinite', color: s.color, flexShrink: 0 }} />
+              : <span style={{ flexShrink: 0, display: 'flex' }}>{s.icon}</span>}
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.label}</span>
+          </button>
+        ))}
+        {urlOpen && (
+          <UrlImport onFile={(f) => { onFile(f); setUrlOpen(false) }} onClose={() => setUrlOpen(false)} />
+        )}
+      </div>
+    )
   }
 
   return (

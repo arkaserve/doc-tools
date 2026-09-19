@@ -30,18 +30,22 @@ export default function FileUploadZone({ accept, multiple = false, files, onFile
 
   return (
     <div className="space-y-4">
-      <div {...getRootProps()} className={`upload-zone ${isDragActive ? 'drag-over' : ''}`}>
-        <input {...getInputProps()} />
-        <Upload size={40} className={`mx-auto mb-3 ${isDragActive ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`} />
-        <p className="text-lg font-medium text-gray-700 dark:text-gray-200">{label || 'Drop files here or click to browse'}</p>
-        <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Max file size: {MAX_MB} MB</p>
-        {hint && <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{hint}</p>}
-        <button type="button" className="btn-primary mt-4 text-sm">
-          Select {multiple ? 'Files' : 'File'}
-        </button>
-      </div>
+      <div style={{ display: 'flex', gap: '12px', alignItems: 'stretch' }}>
+        {/* Upload dropzone — narrower */}
+        <div {...getRootProps()} className={`upload-zone ${isDragActive ? 'drag-over' : ''}`} style={{ flex: 1, minHeight: '200px', padding: '24px 20px' }}>
+          <input {...getInputProps()} />
+          <Upload size={34} className={`mx-auto mb-2 ${isDragActive ? 'text-red-500' : 'text-gray-400 dark:text-gray-500'}`} />
+          <p className="text-base font-medium text-gray-700 dark:text-gray-200">{label || 'Drop files here or click to browse'}</p>
+          <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Max file size: {MAX_MB} MB</p>
+          {hint && <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{hint}</p>}
+          <button type="button" className="btn-primary mt-3 text-sm">
+            Select {multiple ? 'Files' : 'File'}
+          </button>
+        </div>
 
-      <CloudFilePicker accept={accept} onFile={addFile} multiple={multiple} />
+        {/* Cloud import — right side vertical panel */}
+        <CloudFilePicker accept={accept} onFile={addFile} multiple={multiple} vertical />
+      </div>
 
       {files && files.length > 0 && (
         <div className="space-y-2">
