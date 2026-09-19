@@ -140,11 +140,16 @@ export default function PdfEditor() {
   const [saving,      setSaving]      = useState(false)
   const [pageScales,  setPageScales]  = useState({})
 
-  const pdfCanvasRef  = useRef(null)
-  const drawCanvasRef = useRef(null)
-  const wrapperRef    = useRef(null)
-  const scrollAreaRef = useRef(null)
-  const didDragRef    = useRef(false)
+  const pdfCanvasRef   = useRef(null)
+  const drawCanvasRef  = useRef(null)
+  const wrapperRef     = useRef(null)
+  const scrollAreaRef  = useRef(null)
+  const didDragRef     = useRef(false)
+  // True when mousedown fires while a text annotation is being edited AND
+  // the click target is outside the annotation/toolbar. Blur fires synchronously
+  // before onClick, clearing editingId — so we track this in mousedown to prevent
+  // the following click from creating a phantom new annotation.
+  const wasEditingRef  = useRef(false)
 
   /* ── Load PDF.js ── */
   useEffect(() => {
@@ -224,6 +229,9 @@ export default function PdfEditor() {
   /* ── Mouse — draw tools ── */
   const onMouseDown = e => {
     if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar')) return
+    // Record if a text annotation was being edited when this click started.
+    // Blur fires before onClick, so we must capture it here while editingId is still set.
+    wasEditingRef.current = editingId !== null
     if (!['highlight','whitebox','draw'].includes(tool)) return
     didDragRef.current = false
     const pos = getPos(e); setSelectedId(null); setEditingId(null)
@@ -259,6 +267,9 @@ export default function PdfEditor() {
   const onClick = e => {
     if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar')) return
     if (didDragRef.current) return
+    // If mousedown started while a text annotation was being edited, this click
+    // is the same gesture that caused blur+commit — don't also create a new annotation.
+    if (wasEditingRef.current) { wasEditingRef.current = false; return }
     if (tool === 'select') { setSelectedId(null); setEditingId(null); return }
     if (tool !== 'text') return
     const pos = getPos(e)
