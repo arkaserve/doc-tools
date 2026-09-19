@@ -137,8 +137,12 @@ export default function PdfEditor() {
   const [liveDraw,    setLiveDraw]    = useState(null)
   const [editingId,   setEditingId]   = useState(null)
   const [selectedId,  setSelectedId]  = useState(null)
-  const [saving,      setSaving]      = useState(false)
-  const [pageScales,  setPageScales]  = useState({})
+  const [saving,       setSaving]       = useState(false)
+  const [pageScales,   setPageScales]   = useState({})
+  // Existing PDF text extracted from each page — users can click to edit directly
+  const [pdfTextItems, setPdfTextItems] = useState({})   // { pageNum: [{id,originalStr,canvasLeft,canvasTop,...}] }
+  const [editingPdfId, setEditingPdfId] = useState(null) // id of the PDF text item being edited
+  const [pdfTextEdits, setPdfTextEdits] = useState({})   // { id: newStr }
 
   const pdfCanvasRef   = useRef(null)
   const drawCanvasRef  = useRef(null)
@@ -170,11 +174,12 @@ export default function PdfEditor() {
     const init = {}
     setAnnotations(init); setHistory([init]); setHistIdx(0)
     setCurrentPage(1); setSelectedId(null); setEditingId(null)
+    setPdfTextItems({}); setPdfTextEdits({}); setEditingPdfId(null)
     const doc = await window.pdfjsLib.getDocument({ data: bytes.slice() }).promise
     setPdfjsDoc(doc); setNumPages(doc.numPages)
   }
 
-  /* ── Render page ── */
+  /* ── Render page + extract text items ── */
   const renderPage = useCallback(async (pageNum) => {
     if (!pdfjsDoc || !pdfCanvasRef.current || !scrollAreaRef.current) return
     const page   = await pdfjsDoc.getPage(pageNum)
@@ -187,6 +192,39 @@ export default function PdfEditor() {
     if (drawCanvasRef.current) { drawCanvasRef.current.width = vp.width; drawCanvasRef.current.height = vp.height }
     setPageScales(ps => ({ ...ps, [pageNum]: scale }))
     await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise
+
+    // Extract positioned text items so user can click-to-edit existing PDF text
+    try {
+      const tc = await page.getTextContent()
+      const util = window.pdfjsLib.Util
+      const items = []
+      for (const item of tc.items) {
+        if (!item.str || !item.str.trim()) continue
+        // canvas-space transform
+        const tx = util.transform(vp.transform, item.transform)
+        const fs = Math.hypot(tx[0], tx[1])   // font-size in canvas px
+        if (fs < 3) continue
+        const left = tx[4]
+        const top  = tx[5] - fs * 0.9          // approx top of glyph
+        const w    = (item.width || 0) * scale
+        items.push({
+          id: `pt_${pageNum}_${Math.round(item.transform[4])}_${Math.round(item.transform[5])}_${encodeURIComponent(item.str)}`,
+          originalStr: item.str,
+          // canvas coords (for UI overlay)
+          canvasLeft: left,
+          canvasTop:  top,
+          canvasW:    Math.max(w, fs * 0.5),
+          canvasH:    fs * 1.15,
+          canvasFs:   fs,
+          // PDF user-space coords (for pdf-lib export)
+          pdfX:  item.transform[4],
+          pdfY:  item.transform[5],          // baseline y from bottom
+          pdfW:  item.width || 0,
+          pdfFs: Math.hypot(item.transform[0], item.transform[1]),
+        })
+      }
+      setPdfTextItems(prev => ({ ...prev, [pageNum]: items }))
+    } catch (_) { /* text extraction not critical */ }
   }, [pdfjsDoc])
 
   useEffect(() => { renderPage(currentPage) }, [pdfjsDoc, currentPage, renderPage])
@@ -228,10 +266,10 @@ export default function PdfEditor() {
 
   /* ── Mouse — draw tools ── */
   const onMouseDown = e => {
-    if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar')) return
+    if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar') || e.target.closest('.pdf-text-item')) return
     // Record if a text annotation was being edited when this click started.
     // Blur fires before onClick, so we must capture it here while editingId is still set.
-    wasEditingRef.current = editingId !== null
+    wasEditingRef.current = editingId !== null || editingPdfId !== null
     if (!['highlight','whitebox','draw'].includes(tool)) return
     didDragRef.current = false
     const pos = getPos(e); setSelectedId(null); setEditingId(null)
@@ -265,7 +303,7 @@ export default function PdfEditor() {
 
   /* ── Click — text / select ── */
   const onClick = e => {
-    if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar')) return
+    if (e.target.closest('.annot-el') || e.target.closest('.float-toolbar') || e.target.closest('.pdf-text-item')) return
     if (didDragRef.current) return
     // If mousedown started while a text annotation was being edited, this click
     // is the same gesture that caused blur+commit — don't also create a new annotation.
@@ -361,6 +399,37 @@ export default function PdfEditor() {
           }
         }
       }
+      // Apply PDF text edits: white-out original + draw new text
+      const hlFont = await doc.embedFont(StandardFonts.Helvetica)
+      for (const [pageNumStr, items] of Object.entries(pdfTextItems)) {
+        if (!items?.length) continue
+        const pIdx = parseInt(pageNumStr) - 1
+        const page = doc.getPage(pIdx)
+        const { height: ph } = page.getSize()
+        for (const item of items) {
+          const newStr = pdfTextEdits[item.id]
+          if (newStr === undefined || newStr === item.originalStr) continue
+          // Cover original text with white rectangle
+          page.drawRectangle({
+            x: item.pdfX - 1,
+            y: item.pdfY - item.pdfFs * 0.25,
+            width:  item.pdfW  + 6,
+            height: item.pdfFs * 1.3,
+            color: rgb(1, 1, 1),
+          })
+          // Draw replacement text at same baseline position
+          if (newStr.trim()) {
+            page.drawText(newStr, {
+              x: item.pdfX,
+              y: item.pdfY,
+              size: item.pdfFs,
+              font: hlFont,
+              color: rgb(0, 0, 0),
+            })
+          }
+        }
+      }
+
       const out  = await doc.save()
       const blob = new Blob([out], { type:'application/pdf' })
       const url  = URL.createObjectURL(blob)
@@ -486,6 +555,82 @@ export default function PdfEditor() {
         >
           {/* PDF canvas */}
           <canvas ref={pdfCanvasRef} style={{ display:'block' }} />
+
+          {/* ── Existing PDF text — click to edit in-place ── */}
+          {(pdfTextItems[currentPage] || []).map(item => {
+            const newStr   = pdfTextEdits[item.id]
+            const isEd     = editingPdfId === item.id
+            const isModified = newStr !== undefined && newStr !== item.originalStr
+
+            return (
+              <div
+                key={item.id}
+                className="pdf-text-item"
+                onMouseDown={e => e.stopPropagation()}
+                onClick={e => {
+                  e.stopPropagation()
+                  if (editingPdfId !== item.id) {
+                    if (newStr === undefined) setPdfTextEdits(p => ({ ...p, [item.id]: item.originalStr }))
+                    setEditingPdfId(item.id)
+                    setEditingId(null)
+                  }
+                }}
+                style={{
+                  position: 'absolute',
+                  left:   item.canvasLeft,
+                  top:    item.canvasTop,
+                  width:  isEd ? Math.max(item.canvasW, 120) : item.canvasW,
+                  height: item.canvasH,
+                  zIndex: isEd ? 25 : (isModified ? 8 : 5),
+                  background: (isEd || isModified) ? '#fff' : 'transparent',
+                  border:     isEd ? '2px solid #3b82f6' : (isModified ? '1px dashed #3b82f6' : 'none'),
+                  borderRadius: 2,
+                  cursor: 'text',
+                  pointerEvents: 'all',
+                  boxSizing: 'border-box',
+                  overflow: 'visible',
+                }}
+              >
+                {isEd ? (
+                  <input
+                    autoFocus
+                    value={newStr ?? item.originalStr}
+                    onChange={e => setPdfTextEdits(p => ({ ...p, [item.id]: e.target.value }))}
+                    onBlur={() => setEditingPdfId(null)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') { e.preventDefault(); setEditingPdfId(null) }
+                      if (e.key === 'Escape') {
+                        e.preventDefault()
+                        setPdfTextEdits(p => { const n = { ...p }; delete n[item.id]; return n })
+                        setEditingPdfId(null)
+                      }
+                    }}
+                    style={{
+                      position: 'absolute', top: 0, left: 0,
+                      minWidth: '100%', height: '100%',
+                      fontSize: item.canvasFs,
+                      fontFamily: 'Arial,Helvetica,sans-serif',
+                      background: '#fff',
+                      border: 'none', outline: 'none',
+                      padding: '0 2px', lineHeight: 1,
+                      whiteSpace: 'nowrap',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                ) : isModified ? (
+                  <span style={{
+                    fontSize: item.canvasFs,
+                    fontFamily: 'Arial,Helvetica,sans-serif',
+                    whiteSpace: 'nowrap',
+                    display: 'block',
+                    lineHeight: 1,
+                    paddingTop: 1,
+                    paddingLeft: 2,
+                  }}>{newStr}</span>
+                ) : null}
+              </div>
+            )
+          })}
 
           {/* ── Floating toolbar (text only) ── */}
           {activeAnnot && (
