@@ -43,3 +43,10 @@ async def get_stats(page: str = Query(None, description="Tool path to get count 
     if page:
         return {"page": page, "count": data["pages"].get(page, 0), "total": data.get("total", 0)}
     return {"pages": data["pages"], "total": data.get("total", 0)}
+
+
+@router.get("/total")
+async def get_total():
+    """Get total visitor count only — no trailing slash, works through Vercel rewrites."""
+    data = _load()
+    return {"pages": data["pages"], "total": data.get("total", 0)}
