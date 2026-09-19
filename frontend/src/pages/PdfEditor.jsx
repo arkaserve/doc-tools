@@ -48,10 +48,10 @@ const FONTS    = [{ value:'Helvetica', label:'Sans-Serif' }, { value:'TimesRoman
 const FONT_CSS = { Helvetica:'Arial,Helvetica,sans-serif', TimesRoman:'Georgia,"Times New Roman",serif', Courier:'"Courier New",Courier,monospace' }
 const SIZES    = [8,10,11,12,13,14,16,18,20,24,28,32,36,48]
 
-/* Textarea that auto-focuses after mount */
+/* Textarea that auto-focuses and selects-all after mount */
 function FocusedTextarea({ value, onChange, onBlur, onKeyDown, style }) {
   const ref = useCallback(node => {
-    if (node) setTimeout(() => { node.focus(); node.setSelectionRange(node.value.length, node.value.length) }, 30)
+    if (node) setTimeout(() => { node.focus(); node.select() }, 30)
   }, [])
   return (
     <textarea ref={ref} value={value} onChange={onChange} onBlur={onBlur} onKeyDown={onKeyDown}
@@ -536,8 +536,8 @@ export default function PdfEditor() {
                     onChange={e=>updateText(a.id,e.target.value)}
                     onBlur={e=>commitText(a.id,e.target.value)}
                     onKeyDown={e=>{
-                      if(e.key==='Escape') commitText(a.id,a.text)
-                      if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();commitText(a.id,a.text)}
+                      if(e.key==='Escape'){e.preventDefault();commitText(a.id,a.text)}
+                      if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();commitText(a.id,e.target.value)}
                     }}
                     style={{
                       fontSize:a.fontSize, color:a.color, fontFamily:ff,
