@@ -50,7 +50,6 @@ export default function Footer() {
             <p style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(199,210,254,0.6)', margin: 0 }}>
               60+ free tools — PDF, documents, images, and code. No signup, no watermark.
             </p>
-            {total !== null && <OdometerCounter value={total} />}
           </div>
 
           {/* PDF Tools */}
@@ -92,6 +91,13 @@ export default function Footer() {
           ]} />
 
         </div>
+
+        {/* Visitor counter row */}
+        {total !== null && (
+          <div style={{ borderTop: '1px solid rgba(99,102,241,0.15)', padding: '14px 0', display: 'flex', justifyContent: 'center' }}>
+            <OdometerCounter value={total} />
+          </div>
+        )}
 
         {/* Bottom bar */}
         <div style={{ borderTop: '1px solid rgba(99,102,241,0.25)', padding: '16px 0', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
