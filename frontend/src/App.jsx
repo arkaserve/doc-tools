@@ -101,13 +101,17 @@ function PageMeta() {
     }
     const canonical = `${BASE_URL}${pathname === '/' ? '' : pathname}`
 
+    const ogImage = 'https://tools.arkaserve.com/icons/logo.jpg'
+
     setMeta('name', 'description', desc)
     setMeta('name', 'keywords', keywords)
     setMeta('property', 'og:title', title)
     setMeta('property', 'og:description', desc)
     setMeta('property', 'og:url', canonical)
+    setMeta('property', 'og:image', ogImage)
     setMeta('name', 'twitter:title', title)
     setMeta('name', 'twitter:description', desc)
+    setMeta('name', 'twitter:image', ogImage)
 
     let link = document.querySelector('link[rel="canonical"]')
     if (!link) { link = document.createElement('link'); link.setAttribute('rel', 'canonical'); document.head.appendChild(link) }

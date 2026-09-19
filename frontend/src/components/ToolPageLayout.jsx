@@ -173,6 +173,22 @@ export default function ToolPageLayout({ icon, title, description, children, onP
     const existing = document.getElementById('tool-page-jsonld')
     if (existing) existing.remove()
 
+    // Per-page OG / Twitter tags
+    const setMeta = (attr, name, val) => {
+      let el = document.querySelector(`meta[${attr}="${name}"]`)
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el) }
+      el.setAttribute('content', val)
+    }
+    if (meta.title) {
+      setMeta('property', 'og:title', meta.title)
+      setMeta('name', 'twitter:title', meta.title)
+    }
+    if (meta.desc) {
+      setMeta('property', 'og:description', meta.desc)
+      setMeta('name', 'twitter:description', meta.desc)
+    }
+    setMeta('property', 'og:url', `${SITE_URL}${pathname}`)
+
     const graph = [
       {
         '@type': 'SoftwareApplication',
@@ -184,7 +200,28 @@ export default function ToolPageLayout({ icon, title, description, children, onP
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         publisher: { '@type': 'Organization', name: 'Arkaserve', url: 'https://arkaserve.com' },
       },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: title, item: `${SITE_URL}${pathname}` },
+        ],
+      },
     ]
+
+    if (steps.length > 0) {
+      graph.push({
+        '@type': 'HowTo',
+        name: `How to use ${title}`,
+        description: `Step-by-step guide to use the free ${title} tool on Arkaserve Tools.`,
+        step: steps.map((s, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: s.title || s,
+          text: s.desc || s,
+        })),
+      })
+    }
 
     if (faqs.length > 0) {
       graph.push({
