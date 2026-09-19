@@ -29,8 +29,8 @@ export function useSiteStats() {
   const [stats, setStats] = useState(null)
 
   useEffect(() => {
-    fetch(`${API}/api/stats/`)
-      .then(r => r.ok ? r.json() : null)
+    fetch(`${API}/api/stats/`, { cache: 'no-store' })
+      .then(r => r.ok && r.headers.get('content-type')?.includes('application/json') ? r.json() : null)
       .then(data => { if (data) setStats(data) })
       .catch(() => {})
   }, [])
